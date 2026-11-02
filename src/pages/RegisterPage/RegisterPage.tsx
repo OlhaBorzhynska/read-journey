@@ -85,31 +85,26 @@ const RegisterPage = () => {
           </div>
         </section>
 
-        <div
-          className={css.previewSection}
-          role="img"
-          aria-label="Preview of the Read Journey mobile application"
-        />
-        <picture>
-          {/* Desktop */}
-          <source
-            media="(min-width: 768px)"
-            srcSet="
+        <section className={css.previewSection}>
+          <picture className={css.previewImage}>
+            <source
+              media="(min-width: 768px)"
+              srcSet="
       /images/registration-desktop.webp 1x,
       /images/registration-desktop@2x.webp 2x
     "
-          />
+            />
 
-          {/* Mobile */}
-          <img
-            src="/images/registration-mobile.png"
-            srcSet="
+            <img
+              src="/images/registration-mobile.png"
+              srcSet="
       /images/registration-mobile.webp 1x,
       /images/registration-mobile@2x.webp 2x
     "
-            alt="Read Journey application preview"
-          />
-        </picture>
+              alt="Read Journey application preview"
+            />
+          </picture>
+        </section>
       </div>
     </main>
   );

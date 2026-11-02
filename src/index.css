@@ -81,9 +81,9 @@ img {
   }
 }
 
-@media screen and (min-width: 1312px) {
+@media screen and (min-width: 1344px) {
   .container {
-    max-width: 1312px;
+    max-width: 1344px;
     padding: 0 64px;
   }
 }
