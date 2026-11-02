@@ -1,10 +1,226 @@
+// import { Link } from "react-router-dom";
+// import css from "./RegisterPage.module.css";
+// import Logo from "../../components/Logo/Logo";
+// import { useState } from "react";
+// import * as Yup from "yup";
+// import { useFormik } from "formik";
+
+// export const registerSchema = Yup.object({
+//   name: Yup.string().required("Name is required"),
+
+//   email: Yup.string()
+//     .matches(
+//       /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+//       "Please enter a valid email address",
+//     )
+//     .required("Email is required"),
+
+//   password: Yup.string()
+//     .min(7, "Password must be at least 7 characters")
+//     .required("Password is required"),
+// });
+
+// const RegisterPage = () => {
+//   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+//   const formik = useFormik({
+//     initialValues: {
+//       name: "",
+//       email: "",
+//       password: "",
+//     },
+//     validationSchema: registerSchema,
+//     onSubmit: (values) => {
+//       console.log(values);
+//     },
+//   });
+
+//    const getFieldStatus = (field: "name" | "email" | "password") => {
+//      if (!formik.touched[field]) return "";
+
+//      if (formik.errors[field]) return "error";
+
+//      if (formik.values[field].trim()) return "success";
+
+//      return "";
+//   };
+
+//   return (
+//     <main className="container">
+//       <div className={css.registerContainer}>
+//         <section className={css.registerSection}>
+//           <Logo variant="auth" />
+
+//           <div className={css.registerContent}>
+//             <h1 className={css.title}>
+//               Expand your mind, reading{" "}
+//               <span className={css.titleAccent}>a book</span>
+//             </h1>
+
+//             <form className={css.registerForm}>
+//               <div className={css.formFields}>
+//                 <label className={css.inputWrapper}>
+//                   <span className={css.inputLabel}>Name:</span>
+//                   <input
+//                     className={css.input}
+//                     type="text"
+//                     name="name"
+//                     placeholder="Ilona Ratushniak"
+//                     autoComplete="name"
+//                   />
+//                 </label>
+
+//                 <label className={css.inputWrapper}>
+//                   <span className={css.inputLabel}>Mail:</span>
+//                   <input
+//                     className={css.input}
+//                     type="email"
+//                     name="email"
+//                     placeholder="Your@email.com"
+//                     autoComplete="email"
+//                   />
+//                 </label>
+
+//                 <label className={css.inputWrapper}>
+//                   <span className={css.inputLabel}>Password:</span>
+
+//                   <input
+//                     className={css.input}
+//                     type={isPasswordVisible ? "text" : "password"}
+//                     name="password"
+//                     placeholder="Yourpasswordhere"
+//                     autoComplete="new-password"
+//                   />
+
+//                   <button
+//                     className={css.passwordToggle}
+//                     type="button"
+//                     onClick={() => setIsPasswordVisible((prev) => !prev)}
+//                     aria-label={
+//                       isPasswordVisible ? "Hide password" : "Show password"
+//                     }
+//                   >
+//                     <svg className={css.passwordIcon}>
+//                       <use
+//                         href={`/icons/sprite.svg#${
+//                           isPasswordVisible ? "icon-eye" : "icon-eye-off"
+//                         }`}
+//                       />
+//                     </svg>
+//                   </button>
+//                 </label>
+//               </div>
+
+//               <div className={css.formActions}>
+//                 <button className={css.submitButton} type="submit">
+//                   Registration
+//                 </button>
+
+//                 <Link to="/login" className={css.loginLink}>
+//                   Already have an account?
+//                 </Link>
+//               </div>
+//             </form>
+//           </div>
+//         </section>
+
+//         <section className={css.previewSection}>
+//           <picture className={css.previewImage}>
+//             <source
+//               media="(min-width: 768px)"
+//               srcSet="
+//       /images/registration-desktop.webp 1x,
+//       /images/registration-desktop@2x.webp 2x
+//     "
+//             />
+
+//             <img
+//               src="/images/registration-mobile.png"
+//               srcSet="
+//       /images/registration-mobile.webp 1x,
+//       /images/registration-mobile@2x.webp 2x
+//     "
+//               alt="Read Journey application preview"
+//             />
+//           </picture>
+//         </section>
+//       </div>
+//     </main>
+//   );
+// };
+
+// export default RegisterPage;
+
 import { Link } from "react-router-dom";
-import css from "./RegisterPage.module.css";
-import Logo from "../../components/Logo/Logo";
 import { useState } from "react";
+import { useFormik } from "formik";
+import Logo from "../../components/Logo/Logo";
+import css from "./RegisterPage.module.css";
+import { registerSchema } from "../../schemas/registerSchema";
+
+type FieldName = "name" | "email" | "password";
+type FieldStatus = "error" | "success" | "";
 
 const RegisterPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: registerSchema,
+    onSubmit: (values) => {
+      console.log("Registration data:", values);
+    },
+  });
+
+  const getFieldStatus = (field: FieldName): FieldStatus => {
+    if (!formik.touched[field]) return "";
+
+    if (formik.errors[field]) return "error";
+
+    if (formik.values[field].trim()) return "success";
+
+    return "";
+  };
+
+  const renderFieldMessage = (field: FieldName, successMessage: string) => {
+    const status = getFieldStatus(field);
+
+    if (status === "error") {
+      return (
+        <p className={`${css.fieldMessage} ${css.errorMessage}`}>
+          {formik.errors[field]}
+        </p>
+      );
+    }
+
+    if (status === "success") {
+      return (
+        <p className={`${css.fieldMessage} ${css.successMessage}`}>
+          {successMessage}
+        </p>
+      );
+    }
+
+    return null;
+  };
+
+  const getStatusIcon = (status: FieldStatus) => {
+    if (!status) return null;
+
+    return (
+      <svg className={css.statusIcon} aria-hidden="true">
+        <use
+          href={`/icons/sprite.svg#${
+            status === "error" ? "icon-error" : "icon-check"
+          }`}
+        />
+      </svg>
+    );
+  };
 
   return (
     <main className="container">
@@ -18,58 +234,119 @@ const RegisterPage = () => {
               <span className={css.titleAccent}>a book</span>
             </h1>
 
-            <form className={css.registerForm}>
+            <form
+              className={css.registerForm}
+              onSubmit={formik.handleSubmit}
+              noValidate
+            >
               <div className={css.formFields}>
-                <label className={css.inputWrapper}>
-                  <span className={css.inputLabel}>Name:</span>
-                  <input
-                    className={css.input}
-                    type="text"
-                    name="name"
-                    placeholder="Ilona Ratushniak"
-                    autoComplete="name"
-                  />
-                </label>
-
-                <label className={css.inputWrapper}>
-                  <span className={css.inputLabel}>Mail:</span>
-                  <input
-                    className={css.input}
-                    type="email"
-                    name="email"
-                    placeholder="Your@email.com"
-                    autoComplete="email"
-                  />
-                </label>
-
-                <label className={css.inputWrapper}>
-                  <span className={css.inputLabel}>Password:</span>
-
-                  <input
-                    className={css.input}
-                    type={isPasswordVisible ? "text" : "password"}
-                    name="password"
-                    placeholder="Yourpasswordhere"
-                    autoComplete="new-password"
-                  />
-
-                  <button
-                    className={css.passwordToggle}
-                    type="button"
-                    onClick={() => setIsPasswordVisible((prev) => !prev)}
-                    aria-label={
-                      isPasswordVisible ? "Hide password" : "Show password"
-                    }
+                <div className={css.fieldGroup}>
+                  <div
+                    className={`${css.inputWrapper} ${
+                      css[getFieldStatus("name")]
+                    }`}
                   >
-                    <svg className={css.passwordIcon}>
-                      <use
-                        href={`/icons/sprite.svg#${
-                          isPasswordVisible ? "icon-eye" : "icon-eye-off"
-                        }`}
-                      />
-                    </svg>
-                  </button>
-                </label>
+                    <label className={css.inputLabel} htmlFor="name">
+                      Name:
+                    </label>
+
+                    <input
+                      className={css.input}
+                      id="name"
+                      type="text"
+                      name="name"
+                      placeholder="Ilona Ratushniak"
+                      autoComplete="name"
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      aria-invalid={getFieldStatus("name") === "error"}
+                    />
+
+                    {getStatusIcon(getFieldStatus("name"))}
+                  </div>
+
+                  {renderFieldMessage("name", "Name is secure")}
+                </div>
+
+                <div className={css.fieldGroup}>
+                  <div
+                    className={`${css.inputWrapper} ${
+                      css[getFieldStatus("email")]
+                    }`}
+                  >
+                    <label className={css.inputLabel} htmlFor="email">
+                      Mail:
+                    </label>
+
+                    <input
+                      className={css.input}
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Your@email.com"
+                      autoComplete="email"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      aria-invalid={getFieldStatus("email") === "error"}
+                    />
+
+                    {getStatusIcon(getFieldStatus("email"))}
+                  </div>
+
+                  {renderFieldMessage("email", "Email is secure")}
+                </div>
+
+                <div className={css.fieldGroup}>
+                  <div
+                    className={`${css.inputWrapper} ${
+                      css[getFieldStatus("password")]
+                    }`}
+                  >
+                    <label className={css.inputLabel} htmlFor="password">
+                      Password:
+                    </label>
+
+                    <input
+                      className={css.input}
+                      id="password"
+                      type={isPasswordVisible ? "text" : "password"}
+                      name="password"
+                      placeholder="Yourpasswordhere"
+                      autoComplete="new-password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      aria-invalid={getFieldStatus("password") === "error"}
+                    />
+
+                    <button
+                      type="button"
+                      className={`${css.passwordToggle} ${
+                        getFieldStatus("password") === "error"
+                          ? css.errorIcon
+                          : getFieldStatus("password") === "success"
+                            ? css.successIcon
+                            : ""
+                      }`}
+                      onClick={() => setIsPasswordVisible((prev) => !prev)}
+                      aria-label={
+                        isPasswordVisible ? "Hide password" : "Show password"
+                      }
+                    >
+                      <svg className={css.passwordIcon} aria-hidden="true">
+                        <use
+                          href={`/icons/sprite.svg#${
+                            isPasswordVisible ? "icon-eye" : "icon-eye-off"
+                          }`}
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {renderFieldMessage("password", "Password is secure")}
+                </div>
               </div>
 
               <div className={css.formActions}>
@@ -90,17 +367,17 @@ const RegisterPage = () => {
             <source
               media="(min-width: 768px)"
               srcSet="
-      /images/registration-desktop.webp 1x,
-      /images/registration-desktop@2x.webp 2x
-    "
+                /images/registration-desktop.webp 1x,
+                /images/registration-desktop@2x.webp 2x
+              "
             />
 
             <img
               src="/images/registration-mobile.png"
               srcSet="
-      /images/registration-mobile.webp 1x,
-      /images/registration-mobile@2x.webp 2x
-    "
+                /images/registration-mobile.webp 1x,
+                /images/registration-mobile@2x.webp 2x
+              "
               alt="Read Journey application preview"
             />
           </picture>
