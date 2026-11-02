@@ -1,0 +1,33 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logoIcon {
+  display: block;
+  width: 42px;
+  height: 17px;
+}
+
+.logoText {
+  display: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+@media screen and (min-width: 768px) {
+  .auth .logoText {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .logoText {
+    display: inline;
+  }
+}

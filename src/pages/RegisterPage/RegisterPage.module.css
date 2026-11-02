@@ -1,0 +1,158 @@
+.registerContainer {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.registerSection {
+  padding: 20px;
+  border-radius: 30px;
+  width: 335px;
+  background-color: var(--color-background-secondary);
+}
+
+.registerContent {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  max-width: 295px;
+  margin-bottom: 20px;
+}
+
+.titleAccent {
+  color: rgba(227, 227, 227, 0.5);
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  border-radius: 12px;
+  padding: 14px 14px 14px 14px;
+  width: 295px;
+  height: 44px;
+  background-color: #262626;
+
+  display: flex;
+  gap: 10px;
+
+  transition: border-color 250ms ease;
+}
+
+.inputWrapper:hover,
+.inputWrapper:focus-within {
+  border: 1px solid rgba(249, 249, 249, 0.1);
+}
+
+.inputLabel {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.passwordToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.passwordIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.submitButton {
+  border-radius: 30px;
+  border: none;
+  padding: 12px 29px;
+  width: 140px;
+  height: 42px;
+  background-color: var(--color-text-primary);
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: var(--color-background-secondary);
+
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.loginLink {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16667;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--color-text-secondary);
+
+  transition: border-color 250ms ease;
+}
+
+.previewSection {
+}
