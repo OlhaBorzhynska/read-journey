@@ -1,0 +1,353 @@
+.loginContainer {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginSection {
+  padding: 20px;
+  border-radius: 30px;
+  width: 335px;
+  background-color: var(--color-background-secondary);
+}
+
+.loginContent {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  max-width: 295px;
+  margin-bottom: 20px;
+}
+
+.titleAccent {
+  color: rgba(227, 227, 227, 0.5);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 14px;
+  width: 295px;
+  height: 44px;
+  background-color: #262626;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: border-color 250ms ease;
+}
+
+.inputWrapper:hover,
+.inputWrapper:focus-within {
+  border-color: rgba(249, 249, 249, 0.1);
+}
+
+.inputWrapper.error,
+.inputWrapper.error:hover,
+.inputWrapper.error:focus-within {
+  border-color: var(--color-accent-error);
+}
+
+.inputWrapper.success,
+.inputWrapper.success:hover,
+.inputWrapper.success:focus-within {
+  border-color: var(--color-accent-green);
+}
+
+.inputLabel {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.input {
+  min-width: 0;
+  flex: 1;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.statusIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.error .statusIcon {
+  color: var(--color-accent-error);
+}
+
+.success .statusIcon {
+  color: var(--color-accent-green);
+}
+
+.fieldMessage {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+}
+
+.errorMessage {
+  color: var(--color-accent-error);
+}
+
+.successMessage {
+  color: var(--color-accent-green);
+}
+
+.passwordToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.passwordIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+}
+
+.passwordToggle.errorIcon {
+  color: var(--color-accent-error);
+}
+
+.passwordToggle.successIcon {
+  color: var(--color-accent-green);
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.submitButton {
+  border-radius: 30px;
+  border: 1px solid transparent;
+  padding: 12px 24px;
+  width: 140px;
+  height: 42px;
+  background-color: var(--color-text-primary);
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: var(--color-background-secondary);
+
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+.submitButton:hover,
+.submitButton:focus-visible {
+  border-color: rgba(249, 249, 249, 0.2);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+.registerLink {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--color-text-secondary);
+
+  transition: color 250ms ease;
+}
+
+.registerLink:hover,
+.registerLink:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.previewSection {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  border-radius: 30px;
+  width: 335px;
+  height: 351px;
+  background-color: var(--color-background-secondary);
+}
+
+.previewImage {
+  display: block;
+  width: 255px;
+  height: 330px;
+}
+
+@media screen and (min-width: 768px) {
+  .loginContainer {
+    padding: 32px 0;
+  }
+
+  .loginSection {
+    padding: 40px 64px;
+    width: 704px;
+  }
+
+  .loginContent {
+    margin-top: 157px;
+    margin-bottom: 174px;
+  }
+
+  .title {
+    font-size: 64px;
+    line-height: 0.94;
+    max-width: 444px;
+    margin-bottom: 40px;
+  }
+
+  .loginForm {
+    gap: 146px;
+  }
+
+  .formFields {
+    gap: 14px;
+  }
+
+  .inputWrapper {
+    padding: 16px 14px;
+    width: 472px;
+    height: 50px;
+  }
+
+  .statusIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .inputLabel,
+  .input::placeholder,
+  .input {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .passwordIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .formActions {
+    gap: 20px;
+  }
+
+  .submitButton {
+    padding: 16px 50px;
+    width: 225px;
+    height: 52px;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .registerLink {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .previewSection {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1344px) {
+  .loginContainer {
+    flex-direction: row;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .loginSection {
+    width: 600px;
+  }
+
+  .loginContent {
+    margin-top: 107px;
+    margin-bottom: 0;
+  }
+
+  .inputWrapper {
+    padding: 16px 14px;
+    width: 472px;
+    height: 50px;
+  }
+
+  .inputLabel {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .previewSection {
+    display: flex;
+    width: 600px;
+    height: auto;
+  }
+
+  .previewImage {
+    display: block;
+    width: 405px;
+    height: 646px;
+  }
+}

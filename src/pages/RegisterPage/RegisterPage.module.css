@@ -72,7 +72,7 @@
 .inputWrapper.error,
 .inputWrapper.error:hover,
 .inputWrapper.error:focus-within {
-  border-color: #e90516;
+  border-color: var(--color-accent-error);
 }
 
 .inputWrapper.success,
@@ -121,7 +121,7 @@
 }
 
 .error .statusIcon {
-  color: #e90516;
+  color: var(--color-accent-error);
 }
 
 .success .statusIcon {
@@ -136,7 +136,7 @@
 }
 
 .errorMessage {
-  color: #e90516;
+  color: var(--color-accent-error);
 }
 
 .successMessage {
@@ -163,7 +163,7 @@
 }
 
 .passwordToggle.errorIcon {
-  color: #e90516;
+  color: var(--color-accent-error);
 }
 
 .passwordToggle.successIcon {
