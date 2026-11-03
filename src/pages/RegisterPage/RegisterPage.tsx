@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { registerUser } from "../../services/authService";
 import toast from "react-hot-toast";
+import { useAppDispatch } from "../../redux/hooks";
+import { refreshUser } from "../../redux/authSlice";
 
 type FieldName = "name" | "email" | "password";
 type FieldStatus = "error" | "success" | "";
@@ -16,6 +18,7 @@ const RegisterPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -29,6 +32,7 @@ const RegisterPage = () => {
         await registerUser(values);
 
         toast.success("Registration successful! Welcome to Read Journey!");
+        await dispatch(refreshUser()).unwrap();
 
         navigate("/recommended", { replace: true });
       } catch (error) {

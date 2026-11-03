@@ -28,3 +28,5 @@ export interface RefreshResponse {
 export interface LogoutResponse {
   message: string;
 }
+
+export type User = Pick<CurrentUserResponse, "_id" | "name" | "email">;

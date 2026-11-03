@@ -4,11 +4,12 @@ import { useFormik } from "formik";
 import Logo from "../../components/Logo/Logo";
 import css from "./LoginPage.module.css";
 import { loginSchema } from "../../schemas/loginSchema";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-
 import { loginUser } from "../../services/authService";
+import { useAppDispatch } from "../../redux/hooks";
+import { refreshUser } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 type FieldName = "email" | "password";
 type FieldStatus = "error" | "success" | "";
@@ -17,6 +18,7 @@ const LoginPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -30,6 +32,7 @@ const LoginPage = () => {
 
         toast.success("Login successful! Welcome back!");
 
+        await dispatch(refreshUser()).unwrap();
         navigate("/recommended", { replace: true });
       } catch (error) {
         if (axios.isAxiosError(error)) {
