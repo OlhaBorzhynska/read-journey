@@ -203,6 +203,17 @@
   background-color: var(--color-background);
 }
 
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitButton:hover:not(:disabled) {
+  border-color: rgba(249, 249, 249, 0.2);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
 .loginLink {
   font-weight: 500;
   font-size: 12px;

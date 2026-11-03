@@ -4,12 +4,18 @@ import { useFormik } from "formik";
 import Logo from "../../components/Logo/Logo";
 import css from "./RegisterPage.module.css";
 import { registerSchema } from "../../schemas/registerSchema";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { registerUser } from "../../services/authService";
+import toast from "react-hot-toast";
 
 type FieldName = "name" | "email" | "password";
 type FieldStatus = "error" | "success" | "";
 
 const RegisterPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -18,8 +24,28 @@ const RegisterPage = () => {
       password: "",
     },
     validationSchema: registerSchema,
-    onSubmit: (values) => {
-      console.log("Registration data:", values);
+    onSubmit: async (values) => {
+      try {
+        await registerUser(values);
+
+        toast.success("Registration successful! Welcome to Read Journey!");
+
+        navigate("/recommended", { replace: true });
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 409) {
+            toast.error("An account with this email already exists.");
+            return;
+          }
+
+          toast.error(
+            error.response?.data?.message ||
+              "Something went wrong. Please try again.",
+          );
+        } else {
+          toast.error("Something went wrong. Please try again.");
+        }
+      }
     },
   });
 
@@ -197,8 +223,12 @@ const RegisterPage = () => {
               </div>
 
               <div className={css.formActions}>
-                <button className={css.submitButton} type="submit">
-                  Registration
+                <button
+                  type="submit"
+                  className={css.submitButton}
+                  disabled={formik.isSubmitting}
+                >
+                  {formik.isSubmitting ? "Loading..." : "Registration"}
                 </button>
 
                 <Link to="/login" className={css.loginLink}>

@@ -4,6 +4,11 @@ import { useFormik } from "formik";
 import Logo from "../../components/Logo/Logo";
 import css from "./LoginPage.module.css";
 import { loginSchema } from "../../schemas/loginSchema";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+import { loginUser } from "../../services/authService";
 
 type FieldName = "email" | "password";
 type FieldStatus = "error" | "success" | "";
@@ -11,14 +16,36 @@ type FieldStatus = "error" | "success" | "";
 const LoginPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      console.log("Login data:", values);
+    onSubmit: async (values) => {
+      try {
+        await loginUser(values);
+
+        toast.success("Login successful! Welcome back!");
+
+        navigate("/recommended", { replace: true });
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 401) {
+            toast.error("Invalid email or password.");
+            return;
+          }
+
+          toast.error(
+            error.response?.data?.message ||
+              "Something went wrong. Please try again.",
+          );
+        } else {
+          toast.error("Something went wrong. Please try again.");
+        }
+      }
     },
   });
 
@@ -167,12 +194,16 @@ const LoginPage = () => {
               </div>
 
               <div className={css.formActions}>
-                <button className={css.submitButton} type="submit">
-                  Log In
+                <button
+                  type="submit"
+                  className={css.submitButton}
+                  disabled={formik.isSubmitting}
+                >
+                  {formik.isSubmitting ? "Loading..." : "Log In"}
                 </button>
 
                 <Link to="/register" className={css.registerLink}>
-                  Don’t have an account?
+                  Don't have an account?
                 </Link>
               </div>
             </form>
