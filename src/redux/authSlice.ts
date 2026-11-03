@@ -4,8 +4,9 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { getCurrentUser } from "../services/authService";
 import { getAccessToken, clearTokens } from "../services/tokenService";
+import { getCurrentUser, logoutUser } from "../services/authService";
+import axios from "axios";
 
 interface AuthState {
   user: User | null;
@@ -36,11 +37,19 @@ export const refreshUser = createAsyncThunk(
         name: user.name,
         email: user.email,
       };
-    } catch {
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        clearTokens();
+      }
+
       return thunkAPI.rejectWithValue("Unable to fetch current user");
     }
   },
 );
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await logoutUser();
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -71,7 +80,11 @@ const authSlice = createSlice({
         state.user = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
-        clearTokens();
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
       });
   },
 });
