@@ -1,0 +1,11 @@
+.layout {
+  min-height: 100vh;
+  padding: 16px;
+  background-color: var(--color-background);
+}
+
+.headerWrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}

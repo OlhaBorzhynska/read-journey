@@ -20,14 +20,8 @@
   color: var(--color-text-primary);
 }
 
-@media screen and (min-width: 768px) {
-  .auth .logoText {
-    display: inline;
-  }
-}
-
 @media screen and (min-width: 1440px) {
-  .logoText {
+  .auth .logoText {
     display: inline;
   }
 }

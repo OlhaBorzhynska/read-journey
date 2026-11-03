@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RecommendedPage from "./pages/RecommendedPage/RecommendedPage";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
+import MainLayout from "./layouts/MainLayout/MainLayout";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,9 +29,11 @@ function App() {
       </Route>
 
       <Route element={<PrivateRoute />}>
-        <Route path="/recommended" element={<RecommendedPage />} />
-        <Route path="/library" element={<LibraryPage />} />
-        <Route path="/reading" element={<ReadingPage />} />
+        <Route element={<MainLayout />}>
+          <Route path="/recommended" element={<RecommendedPage />} />
+          <Route path="/library" element={<LibraryPage />} />
+          <Route path="/reading" element={<ReadingPage />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

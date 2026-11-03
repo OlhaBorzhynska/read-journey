@@ -55,7 +55,7 @@
   padding: 14px;
   width: 295px;
   height: 44px;
-  background-color: #262626;
+  background-color: var(--color-background-third);
 
   display: flex;
   align-items: center;
