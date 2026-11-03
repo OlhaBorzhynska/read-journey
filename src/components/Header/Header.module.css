@@ -188,10 +188,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-
   .mobileControls {
     display: none;
   }
@@ -269,11 +265,7 @@
 
 @media screen and (min-width: 1440px) {
   .header {
-    padding: 24px 0;
-  }
-
-  .container {
-    padding: 0 16px;
+    padding: 16px 0;
   }
 
   .navList {

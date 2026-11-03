@@ -47,8 +47,12 @@ export const refreshUser = createAsyncThunk(
   },
 );
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-  await logoutUser();
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await logoutUser();
+  } catch {
+    return thunkAPI.rejectWithValue("Unable to log out");
+  }
 });
 
 const authSlice = createSlice({
@@ -82,6 +86,11 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+      })
+      .addCase(logout.rejected, (state) => {
         state.user = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;

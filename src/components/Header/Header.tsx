@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
 import Logo from "../../components/Logo/Logo";
 import css from "./Header.module.css";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { logout } from "../../redux/authSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const user = useAppSelector((state) => state.auth.user);
 
@@ -18,6 +24,22 @@ const Header = () => {
 
   const handleMenuClose = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = async () => {
+    setIsMenuOpen(false);
+
+    try {
+      await dispatch(logout()).unwrap();
+    } catch (error) {
+      toast.error(
+        typeof error === "string"
+          ? error
+          : "Could not end your session on the server. You have been logged out on this device.",
+      );
+    } finally {
+      navigate("/");
+    }
   };
 
   return (
@@ -108,7 +130,7 @@ const Header = () => {
           <button
             type="button"
             className={css.logoutButtonMobile}
-            onClick={handleMenuClose}
+            onClick={handleLogout}
           >
             Log out
           </button>
@@ -123,7 +145,11 @@ const Header = () => {
             <span className={css.userName}>{user?.name}</span>
           </div>
 
-          <button type="button" className={css.logoutButton}>
+          <button
+            type="button"
+            className={css.logoutButton}
+            onClick={handleLogout}
+          >
             Log out
           </button>
         </div>
