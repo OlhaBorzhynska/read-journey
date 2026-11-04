@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { useFormik } from "formik";
 import type { RecommendedBooksParams } from "../../types/book";
 import css from "./Filters.module.css";
 
@@ -17,38 +17,59 @@ const initialValues: FiltersValues = {
 };
 
 const Filters = ({ onSubmit }: FiltersProps) => {
-  const handleSubmit = (values: FiltersValues) => {
-    onSubmit({
-      title: values.title.trim() || undefined,
-      author: values.author.trim() || undefined,
-    });
-  };
+  const formik = useFormik({
+    initialValues,
+    onSubmit: (values) => {
+      onSubmit({
+        title: values.title.trim() || undefined,
+        author: values.author.trim() || undefined,
+      });
+    },
+  });
 
   return (
     <div className={css.filters}>
       <p className={css.title}>Filters:</p>
 
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form className={css.form}>
-          <Field
+      <form className={css.form} onSubmit={formik.handleSubmit}>
+        <div className={css.inputWrapper}>
+          <label className={css.inputLabel} htmlFor="title">
+            Book title:
+          </label>
+
+          <input
             className={css.input}
+            id="title"
             type="text"
             name="title"
-            placeholder="Book title: Enter text"
+            placeholder="Enter text"
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+        </div>
 
-          <Field
+        <div className={css.inputWrapper}>
+          <label className={css.inputLabel} htmlFor="author">
+            The author:
+          </label>
+
+          <input
             className={css.input}
+            id="author"
             type="text"
             name="author"
-            placeholder="The author: Enter text"
+            placeholder="Enter text"
+            value={formik.values.author}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+        </div>
 
-          <button className={css.button} type="submit">
-            To apply
-          </button>
-        </Form>
-      </Formik>
+        <button className={css.button} type="submit">
+          To apply
+        </button>
+      </form>
     </div>
   );
 };

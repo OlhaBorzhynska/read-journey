@@ -171,7 +171,8 @@
   color: var(--color-text-primary);
   transition:
     background-color 200ms ease,
-    border-color 200ms ease;
+    border-color 200ms ease,
+    color 200ms ease;
 }
 
 .logoutButton:hover,

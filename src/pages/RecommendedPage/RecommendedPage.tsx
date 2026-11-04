@@ -5,6 +5,7 @@ import RecommendedBooks from "../../components/RecommendedBooks/RecommendedBooks
 import { getRecommendedBooks } from "../../services/bookService";
 import type { RecommendedBook, RecommendedBooksParams } from "../../types/book";
 import css from "./RecommendedPage.module.css";
+import StartWorkout from "../../components/StartWorkout/StartWorkout";
 
 const getBooksLimit = () => {
   const width = window.innerWidth;
@@ -90,6 +91,7 @@ const RecommendedPage = () => {
       <div className={css.recommendedContainer}>
         <Dashboard>
           <Filters onSubmit={handleFilterSubmit} />
+          <StartWorkout />
         </Dashboard>
 
         <RecommendedBooks

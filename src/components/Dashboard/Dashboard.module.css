@@ -6,6 +6,7 @@
   padding: 20px;
   width: 335px;
   background: var(--color-background-secondary);
+  align-self: start;
 }
 
 @media screen and (min-width: 768px) {

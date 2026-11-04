@@ -1,0 +1,161 @@
+.startWorkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.workoutInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  border-radius: 12px;
+  width: 295px;
+  height: 244px;
+  background: var(--color-background-third);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-text-primary);
+  border-radius: 50%;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-background-secondary);
+}
+
+.stepText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.accentText {
+  color: var(--color-text-secondary);
+}
+
+.libraryLink {
+  display: flex;
+  justify-content: space-between;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--color-text-secondary);
+  transition: color 250ms ease;
+}
+
+.libraryIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition: transform 250ms ease;
+}
+
+.libraryLink:hover,
+.libraryLink:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.libraryLink:hover .libraryIcon,
+.libraryLink:focus-visible .libraryIcon {
+  transform: scale(1.15);
+}
+
+.quote {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .workoutInfo {
+    gap: 0;
+    width: 313px;
+    height: 272px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  .steps {
+    margin-bottom: 26px;
+  }
+
+  .stepNumber {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .startWorkout {
+    gap: 20px;
+  }
+
+  .quote {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 12px;
+    width: 313px;
+    height: 83px;
+    background: var(--color-background-third);
+    padding: 15px 20px;
+  }
+
+  .quoteIcon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .quoteText {
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    color: var(--color-text-secondary);
+  }
+
+  .quoteAccentText {
+    color: var(--color-text-primary);
+  }
+}
