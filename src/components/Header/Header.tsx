@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../components/Logo/Logo";
 import css from "./Header.module.css";
@@ -6,9 +5,36 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { logout } from "../../redux/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
