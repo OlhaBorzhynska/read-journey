@@ -71,7 +71,7 @@ const Header = () => {
   return (
     <header className={css.header}>
       <div className={css.container}>
-        <Logo variant="auth" />
+        <Logo variant="header" />
 
         <div className={css.mobileControls}>
           <div className={css.mobileAvatar}>
