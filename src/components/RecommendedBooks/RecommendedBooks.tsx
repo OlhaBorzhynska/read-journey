@@ -20,32 +20,34 @@ const RecommendedBooks = ({
 }: RecommendedBooksProps) => {
   return (
     <section className={css.recommended}>
-      <h1 className={css.title}>Recommended</h1>
+      <div className={css.titlePaginationWrapper}>
+        <h1 className={css.title}>Recommended</h1>
 
-      <div className={css.pagination}>
-        <button
-          type="button"
-          className={css.arrow}
-          disabled={page === 1}
-          onClick={() => onPageChange(page - 1)}
-          aria-label="Previous page"
-        >
-          &lt;
-        </button>
+        <div className={css.pagination}>
+          <button
+            type="button"
+            className={css.arrow}
+            disabled={page === 1}
+            onClick={() => onPageChange(page - 1)}
+            aria-label="Previous page"
+          >
+            <svg className={css.paginationIcon} aria-hidden="true">
+              <use href={`/icons/sprite.svg#icon-chevron-left`} />
+            </svg>
+          </button>
 
-        <span className={css.pageInfo}>
-          {page} / {totalPages}
-        </span>
-
-        <button
-          type="button"
-          className={css.arrow}
-          disabled={page === totalPages}
-          onClick={() => onPageChange(page + 1)}
-          aria-label="Next page"
-        >
-          &gt;
-        </button>
+          <button
+            type="button"
+            className={css.arrow}
+            disabled={page === totalPages}
+            onClick={() => onPageChange(page + 1)}
+            aria-label="Next page"
+          >
+            <svg className={css.paginationIcon} aria-hidden="true">
+              <use href={`/icons/sprite.svg#icon-chevron-right`} />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {isLoading && <p>Loading books...</p>}
