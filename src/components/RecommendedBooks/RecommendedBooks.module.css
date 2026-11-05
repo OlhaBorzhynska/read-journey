@@ -79,6 +79,16 @@
   width: 137px;
 }
 
+.bookButton {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
 .image {
   display: block;
   border-radius: 8px;

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Filters from "../../components/Filters/Filters";
 import RecommendedBooks from "../../components/RecommendedBooks/RecommendedBooks";
@@ -6,6 +5,8 @@ import { getRecommendedBooks } from "../../services/bookService";
 import type { RecommendedBook, RecommendedBooksParams } from "../../types/book";
 import css from "./RecommendedPage.module.css";
 import StartWorkout from "../../components/StartWorkout/StartWorkout";
+import { useCallback, useEffect, useState } from "react";
+import BookModal from "../../components/BookModal/BookModal";
 
 const getBooksLimit = () => {
   const width = window.innerWidth;
@@ -27,6 +28,18 @@ const RecommendedPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(getBooksLimit);
+
+  const [selectedBook, setSelectedBook] = useState<RecommendedBook | null>(
+    null,
+  );
+
+  const handleBookSelect = (book: RecommendedBook) => {
+    setSelectedBook(book);
+  };
+
+  const handleModalClose = useCallback(() => {
+    setSelectedBook(null);
+  }, []);
 
   useEffect(() => {
     let isActive = true;
@@ -101,8 +114,12 @@ const RecommendedPage = () => {
           isLoading={isLoading}
           error={error}
           onPageChange={handlePageChange}
+          onBookSelect={handleBookSelect}
         />
       </div>
+      {selectedBook && (
+        <BookModal book={selectedBook} onClose={handleModalClose} />
+      )}
     </main>
   );
 };

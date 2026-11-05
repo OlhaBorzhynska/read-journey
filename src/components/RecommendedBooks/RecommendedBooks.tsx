@@ -8,6 +8,7 @@ interface RecommendedBooksProps {
   isLoading: boolean;
   error: string | null;
   onPageChange: (page: number) => void;
+  onBookSelect: (book: RecommendedBook) => void;
 }
 
 const RecommendedBooks = ({
@@ -17,6 +18,7 @@ const RecommendedBooks = ({
   isLoading,
   error,
   onPageChange,
+  onBookSelect,
 }: RecommendedBooksProps) => {
   return (
     <section className={css.recommended}>
@@ -61,15 +63,22 @@ const RecommendedBooks = ({
           <ul className={css.list}>
             {books.map((book) => (
               <li className={css.item} key={book._id}>
-                <img
-                  className={css.image}
-                  src={book.imageUrl}
-                  alt={book.title}
-                  loading="lazy"
-                />
+                <button
+                  type="button"
+                  className={css.bookButton}
+                  onClick={() => onBookSelect(book)}
+                  aria-label={`View details about ${book.title}`}
+                >
+                  <img
+                    className={css.image}
+                    src={book.imageUrl}
+                    alt={book.title}
+                    loading="lazy"
+                  />
 
-                <h2 className={css.bookTitle}>{book.title}</h2>
-                <p className={css.author}>{book.author}</p>
+                  <h2 className={css.bookTitle}>{book.title}</h2>
+                  <p className={css.author}>{book.author}</p>
+                </button>
               </li>
             ))}
           </ul>
