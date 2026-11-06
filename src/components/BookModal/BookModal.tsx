@@ -5,9 +5,18 @@ import css from "./BookModal.module.css";
 interface BookModalProps {
   book: RecommendedBook;
   onClose: () => void;
+  onAdd: () => void;
+  isAdding: boolean;
+  isAdded: boolean;
 }
 
-const BookModal = ({ book, onClose }: BookModalProps) => {
+const BookModal = ({
+  book,
+  onClose,
+  onAdd,
+  isAdding,
+  isAdded,
+}: BookModalProps) => {
   return (
     <Modal onClose={onClose} labelledBy="book-modal-title">
       <div className={css.bookContent}>
@@ -20,8 +29,13 @@ const BookModal = ({ book, onClose }: BookModalProps) => {
         <p className={css.author}>{book.author}</p>
         <p className={css.totalPages}>{book.totalPages}&nbsp;pages</p>
 
-        <button type="button" className={css.addButton}>
-          Add to library
+        <button
+          type="button"
+          className={css.addButton}
+          onClick={onAdd}
+          disabled={isAdding || isAdded}
+        >
+          {isAdding ? "Adding..." : isAdded ? "Added" : "Add to library"}
         </button>
       </div>
     </Modal>

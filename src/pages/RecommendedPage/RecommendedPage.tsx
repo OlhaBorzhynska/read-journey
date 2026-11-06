@@ -7,6 +7,9 @@ import css from "./RecommendedPage.module.css";
 import StartWorkout from "../../components/StartWorkout/StartWorkout";
 import { useCallback, useEffect, useState } from "react";
 import BookModal from "../../components/BookModal/BookModal";
+import { addRecommendedBook } from "../../services/bookService";
+import toast from "react-hot-toast";
+import { isAxiosError } from "axios";
 
 const getBooksLimit = () => {
   const width = window.innerWidth;
@@ -32,6 +35,9 @@ const RecommendedPage = () => {
   const [selectedBook, setSelectedBook] = useState<RecommendedBook | null>(
     null,
   );
+  const [addedBookIds, setAddedBookIds] = useState<string[]>([]);
+
+  const [isAdding, setIsAdding] = useState(false);
 
   const handleBookSelect = (book: RecommendedBook) => {
     setSelectedBook(book);
@@ -40,6 +46,33 @@ const RecommendedPage = () => {
   const handleModalClose = useCallback(() => {
     setSelectedBook(null);
   }, []);
+
+  const handleAddBook = async (id: string) => {
+    if (addedBookIds.includes(id)) return;
+
+    try {
+      setIsAdding(true);
+
+      await addRecommendedBook(id);
+
+      setAddedBookIds((prev) => [...prev, id]);
+
+      toast.success("Book added to your library!");
+      setSelectedBook(null);
+    } catch (error) {
+      if (isAxiosError<{ message?: string }>(error)) {
+        toast.error(
+          error.response?.data?.message ||
+            "Failed to add book. Please try again.",
+        );
+        return;
+      }
+
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsAdding(false);
+    }
+  };
 
   useEffect(() => {
     let isActive = true;
@@ -118,7 +151,13 @@ const RecommendedPage = () => {
         />
       </div>
       {selectedBook && (
-        <BookModal book={selectedBook} onClose={handleModalClose} />
+        <BookModal
+          book={selectedBook}
+          onClose={handleModalClose}
+          onAdd={() => handleAddBook(selectedBook._id)}
+          isAdding={isAdding}
+          isAdded={addedBookIds.includes(selectedBook._id)}
+        />
       )}
     </main>
   );
