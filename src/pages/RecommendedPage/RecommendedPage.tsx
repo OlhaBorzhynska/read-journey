@@ -154,6 +154,7 @@ const RecommendedPage = () => {
         <BookModal
           book={selectedBook}
           onClose={handleModalClose}
+          mode="recommended"
           onAdd={() => handleAddBook(selectedBook._id)}
           isAdding={isAdding}
           isAdded={addedBookIds.includes(selectedBook._id)}

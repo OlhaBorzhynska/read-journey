@@ -6,6 +6,8 @@ import type {
   RecommendedBooksParams,
   RecommendedBooksResponse,
   UserBook,
+  ReadingStatus,
+  DeleteBookResponse,
 } from "../types/book";
 
 export const getRecommendedBooks = async (
@@ -34,6 +36,22 @@ export const addBookToLibrary = async (
   book: AddBookRequest,
 ): Promise<UserBook> => {
   const { data } = await api.post<UserBook>("/books/add", book);
+
+  return data;
+};
+
+export const getOwnBooks = async (
+  status?: ReadingStatus,
+): Promise<UserBook[]> => {
+  const { data } = await api.get<UserBook[]>("/books/own", {
+    params: status ? { status } : {},
+  });
+
+  return data;
+};
+
+export const deleteBook = async (id: string): Promise<DeleteBookResponse> => {
+  const { data } = await api.delete<DeleteBookResponse>(`/books/remove/${id}`);
 
   return data;
 };

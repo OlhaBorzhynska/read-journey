@@ -33,14 +33,14 @@ export interface TimeLeftToRead {
 }
 
 export interface BookDetails extends Book {
-  status: string;
+  status: ReadingStatus;
   owner: string;
   progress: BookProgress[];
   timeLeftToRead?: TimeLeftToRead;
 }
 
 export interface UserBook extends Book {
-  status: string;
+  status: ReadingStatus;
   owner: string;
   progress: BookProgress[];
 }
@@ -56,4 +56,11 @@ export interface RecommendedBooksParams {
   author?: string;
   page?: number;
   limit?: number;
+}
+
+export type ReadingStatus = "unread" | "in-progress" | "done";
+
+export interface DeleteBookResponse {
+  message: string;
+  id: string;
 }
