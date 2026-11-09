@@ -7,9 +7,13 @@ import css from "./MyLibraryBooks.module.css";
 import { useNavigate } from "react-router-dom";
 import BookModal from "../BookModal/BookModal";
 
+interface MyLibraryBooksProps {
+  refreshKey: number;
+}
+
 type BookFilter = ReadingStatus | "all";
 
-const MyLibraryBooks = () => {
+const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
   const [books, setBooks] = useState<UserBook[]>([]);
   const [filter, setFilter] = useState<BookFilter>("all");
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +52,7 @@ const MyLibraryBooks = () => {
     return () => {
       isActive = false;
     };
-  }, [filter]);
+  }, [filter, refreshKey]);
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter(event.target.value as BookFilter);

@@ -7,6 +7,7 @@ interface ModalProps {
   onClose: () => void;
   labelledBy?: string;
   ariaLabel?: string;
+  modalClassName?: string;
 }
 
 const Modal = ({
@@ -14,6 +15,7 @@ const Modal = ({
   onClose,
   labelledBy,
   ariaLabel = "Dialog",
+  modalClassName,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -74,7 +76,7 @@ const Modal = ({
     >
       <div
         ref={modalRef}
-        className={css.modal}
+        className={`${css.modal} ${modalClassName || ""}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={labelledBy}
