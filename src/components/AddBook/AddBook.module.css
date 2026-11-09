@@ -182,7 +182,7 @@
     padding: 8px 24px;
     width: 131px;
     height: 42px;
-    margin-top: 12px;
+    margin-top: 38px;
 
     font-size: 16px;
     line-height: 1.13;
@@ -215,5 +215,9 @@
 @media screen and (min-width: 1440px) {
   .inputWrapper {
     width: 313px;
+  }
+
+  .button {
+    margin-top: 20px;
   }
 }

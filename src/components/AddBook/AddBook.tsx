@@ -57,7 +57,7 @@ const AddBook = ({ onBookAdded }: AddBookProps) => {
   return (
     <>
       <section className={css.addBook}>
-        <p className={css.title}>Add book:</p>
+        <p className={css.title}>Create your library:</p>
 
         <Formik
           initialValues={initialValues}

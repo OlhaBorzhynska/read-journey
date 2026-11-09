@@ -15,7 +15,7 @@ const LibraryPage = () => {
   return (
     <main className="container">
       <div className={css.libraryContainer}>
-        <Dashboard>
+        <Dashboard variant="library">
           <AddBook onBookAdded={handleBookAdded} />
           <RecommendedSection />
         </Dashboard>
