@@ -1,39 +1,39 @@
 .library {
   border-radius: 30px;
-  padding: 20px;
-  width: 100%;
-  min-height: 254px;
+  padding: 40px 20px 65px 20px;
+  width: 335px;
+  min-height: 407px;
   background-color: var(--color-background-secondary);
 }
 
 .titleWrapper {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .title {
   font-weight: 700;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 1;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 
 .filter {
-  border: 1px solid rgba(249, 249, 249, 0.2);
+  border: 1px solid #3e3e3e;
   border-radius: 12px;
   padding: 12px 14px;
-  min-width: 100px;
+  width: 120px;
   height: 40px;
   background-color: transparent;
 
-  font-family: inherit;
+  font-weight: 500;
   font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  text-align: center;
   color: var(--color-text-primary);
-  cursor: pointer;
 }
 
 .filter option {
@@ -43,8 +43,10 @@
 
 .message,
 .error {
+  font-weight: 500;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
   text-align: center;
 }
 
@@ -53,7 +55,7 @@
 }
 
 .error {
-  color: #e74a3b;
+  color: var(--color-accent-error);
 }
 
 .emptyState {
@@ -61,81 +63,97 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 20px;
+  padding: 49px 49px 35px 49px;
   text-align: center;
 }
 
-.emptyIcon {
+.emptyIconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
   height: 100px;
-  margin-bottom: 20px;
   border-radius: 50%;
-  background-color: rgba(249, 249, 249, 0.05);
-  font-size: 40px;
+  background-color: var(--color-background-third);
+  margin-bottom: 10px;
 }
 
-.emptyTitle {
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--color-text-primary);
+.emptyIcon {
+  display: block;
+  width: 50px;
+  height: 50px;
 }
 
 .emptyText {
-  max-width: 220px;
-  font-size: 12px;
-  line-height: 1.5;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
   color: var(--color-text-primary);
 }
 
+.emptyTextAccent {
+  color: var(--color-text-secondary);
+}
+
 .list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px 21px;
 }
 
 .item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   min-width: 0;
+  width: 137px;
 }
 
 .bookImage {
   display: block;
-  width: 100%;
-  max-width: 137px;
-  aspect-ratio: 2 / 3;
-  margin-bottom: 8px;
   border-radius: 8px;
+  width: 100%;
+  height: 208px;
+  margin-bottom: 8px;
   object-fit: cover;
+  object-position: center;
+  background-color: var(--color-background-secondary);
+}
+
+.textBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 95px;
+  gap: 2px;
 }
 
 .bookTitle {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  margin-bottom: 4px;
-
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.3;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .author {
-  overflow: hidden;
-  max-width: 100%;
+  font-weight: 500;
   font-size: 10px;
-  line-height: 1.4;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--color-text-secondary);
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .deleteButton {
@@ -144,11 +162,9 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  margin-top: 8px;
-  border: 1px solid rgba(227, 227, 227, 0.1);
+  border: 1px solid rgba(232, 80, 80, 0.2);
   border-radius: 50%;
   background-color: rgba(232, 80, 80, 0.1);
-  cursor: pointer;
 
   transition: background-color 250ms ease;
 }
@@ -163,8 +179,8 @@
 }
 
 .deleteIcon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   stroke: #e85050;
   fill: none;
 }
@@ -173,5 +189,18 @@
   padding: 0;
   border: none;
   background: none;
-  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1344px;
+    padding: 0 64px;
+  }
 }

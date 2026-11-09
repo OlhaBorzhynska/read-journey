@@ -123,15 +123,19 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
 
       {!isLoading && !error && books.length === 0 && (
         <div className={css.emptyState}>
-          <div className={css.emptyIcon} aria-hidden="true">
-            📚
+          <div className={css.emptyIconWrapper} aria-hidden="true">
+            <img
+              className={css.emptyIcon}
+              src="/images/books-icon.png"
+              alt="books icon"
+              aria-hidden="true"
+            />
           </div>
 
-          <p className={css.emptyTitle}>Your library is empty</p>
-
           <p className={css.emptyText}>
-            To start training, add some of your books or from the recommended
-            ones
+            To start training, add &nbsp;
+            <span className={css.emptyTextAccent}>some of your books</span>
+            &nbsp; or from the recommended ones
           </p>
         </div>
       )}
@@ -154,21 +158,25 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
                 />
               </button>
 
-              <h2 className={css.bookTitle}>{book.title}</h2>
+              <div className={css.textBtnWrapper}>
+                <div className={css.textWrapper}>
+                  <h2 className={css.bookTitle}>{book.title}</h2>
 
-              <p className={css.author}>{book.author}</p>
+                  <p className={css.author}>{book.author}</p>
+                </div>
 
-              <button
-                type="button"
-                className={css.deleteButton}
-                onClick={() => handleDeleteBook(book._id)}
-                disabled={deletingBookId === book._id}
-                aria-label={`Delete ${book.title} from library`}
-              >
-                <svg className={css.deleteIcon} aria-hidden="true">
-                  <use href="/icons/sprite.svg#icon-trash" />
-                </svg>
-              </button>
+                <button
+                  type="button"
+                  className={css.deleteButton}
+                  onClick={() => handleDeleteBook(book._id)}
+                  disabled={deletingBookId === book._id}
+                  aria-label={`Delete ${book.title} from library`}
+                >
+                  <svg className={css.deleteIcon} aria-hidden="true">
+                    <use href="/icons/sprite.svg#icon-trash" />
+                  </svg>
+                </button>
+              </div>
             </li>
           ))}
         </ul>
