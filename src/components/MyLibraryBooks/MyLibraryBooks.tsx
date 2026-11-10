@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { isAxiosError } from "axios";
 import { getOwnBooks, deleteBook } from "../../services/bookService";
@@ -13,6 +13,13 @@ interface MyLibraryBooksProps {
 
 type BookFilter = ReadingStatus | "all";
 
+const filterLabels: Record<BookFilter, string> = {
+  unread: "Unread",
+  "in-progress": "In progress",
+  done: "Done",
+  all: "All books",
+};
+
 const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
   const [books, setBooks] = useState<UserBook[]>([]);
   const [filter, setFilter] = useState<BookFilter>("all");
@@ -20,6 +27,8 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
   const [error, setError] = useState<string | null>(null);
   const [deletingBookId, setDeletingBookId] = useState<string | null>(null);
   const [selectedBook, setSelectedBook] = useState<UserBook | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
 
@@ -54,8 +63,36 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
     };
   }, [filter, refreshKey]);
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter(event.target.value as BookFilter);
+  useEffect(() => {
+    if (!isFilterOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isFilterOpen]);
+
+  const handleFilterSelect = (value: BookFilter) => {
+    setFilter(value);
+    setIsFilterOpen(false);
   };
 
   const handleDeleteBook = async (id: string) => {
@@ -104,17 +141,53 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
       <div className={css.titleWrapper}>
         <h1 className={css.title}>My library</h1>
 
-        <select
-          className={css.filter}
-          value={filter}
-          onChange={handleFilterChange}
-          aria-label="Filter books by reading status"
-        >
-          <option value="all">All books</option>
-          <option value="unread">Unread</option>
-          <option value="in-progress">In progress</option>
-          <option value="done">Done</option>
-        </select>
+        <div className={css.filterWrapper} ref={filterRef}>
+          <button
+            type="button"
+            className={css.filterButton}
+            onClick={() => setIsFilterOpen((prev) => !prev)}
+            aria-label="Filter books by reading status"
+            aria-haspopup="listbox"
+            aria-expanded={isFilterOpen}
+            aria-controls="book-filter-options"
+          >
+            <span>{filterLabels[filter]}</span>
+
+            <svg
+              className={`${css.filterIcon} ${
+                isFilterOpen ? css.filterIconOpen : ""
+              }`}
+              aria-hidden="true"
+            >
+              <use href="/icons/sprite.svg#icon-chevron-down" />
+            </svg>
+          </button>
+
+          {isFilterOpen && (
+            <ul
+              className={css.filterOptions}
+              id="book-filter-options"
+              role="listbox"
+              aria-label="Reading status"
+            >
+              {(Object.keys(filterLabels) as BookFilter[]).map((option) => (
+                <li key={option}>
+                  <button
+                    type="button"
+                    className={`${css.filterOption} ${
+                      filter === option ? css.filterOptionActive : ""
+                    }`}
+                    onClick={() => handleFilterSelect(option)}
+                    role="option"
+                    aria-selected={filter === option}
+                  >
+                    {filterLabels[option]}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       {isLoading && <p className={css.message}>Loading books...</p>}
@@ -135,7 +208,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
           <p className={css.emptyText}>
             To start training, add &nbsp;
             <span className={css.emptyTextAccent}>some of your books</span>
-            &nbsp; or from the recommended ones
+            &nbsp;or from the recommended ones
           </p>
         </div>
       )}
