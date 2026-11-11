@@ -131,9 +131,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
   const handleStartReading = () => {
     if (!selectedBook) return;
 
-    navigate("/reading", {
-      state: { bookId: selectedBook._id },
-    });
+    navigate(`/reading/${selectedBook._id}`);
   };
 
   return (

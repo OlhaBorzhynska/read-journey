@@ -8,6 +8,8 @@ import type {
   UserBook,
   ReadingStatus,
   DeleteBookResponse,
+  ReadingRequest,
+  DeleteReadingParams,
 } from "../types/book";
 
 export const getRecommendedBooks = async (
@@ -52,6 +54,39 @@ export const getOwnBooks = async (
 
 export const deleteBook = async (id: string): Promise<DeleteBookResponse> => {
   const { data } = await api.delete<DeleteBookResponse>(`/books/remove/${id}`);
+
+  return data;
+};
+
+export const startReading = async (
+  readingData: ReadingRequest,
+): Promise<BookDetails> => {
+  const { data } = await api.post<BookDetails>(
+    "/books/reading/start",
+    readingData,
+  );
+
+  return data;
+};
+
+export const finishReading = async (
+  readingData: ReadingRequest,
+): Promise<BookDetails> => {
+  const { data } = await api.post<BookDetails>(
+    "/books/reading/finish",
+    readingData,
+  );
+
+  return data;
+};
+
+export const deleteReading = async ({
+  bookId,
+  readingId,
+}: DeleteReadingParams): Promise<BookDetails> => {
+  const { data } = await api.delete<BookDetails>("/books/reading", {
+    params: { bookId, readingId },
+  });
 
   return data;
 };

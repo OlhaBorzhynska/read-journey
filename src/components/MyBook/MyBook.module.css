@@ -1,0 +1,51 @@
+.myBook {
+  border-radius: 30px;
+  width: 335px;
+  padding: 40px 20px;
+  background-color: var(--color-background-secondary);
+}
+
+.titleTimeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  margin-bottom: 40px;
+}
+
+.bookInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bookImage {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bookTitle {
+  margin-bottom: 8px;
+}
+
+.timeLeft {
+}
+
+.author,
+.pages {
+  color: var(--muted-color);
+}
+
+.status {
+  display: inline-block;
+  margin-top: 12px;
+}
