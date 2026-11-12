@@ -257,6 +257,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
           book={selectedBook}
           onClose={handleModalClose}
           mode="library"
+          status={selectedBook.status}
           onStartReading={handleStartReading}
         />
       )}

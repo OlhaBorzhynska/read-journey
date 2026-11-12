@@ -1,4 +1,4 @@
-import type { Book } from "../../types/book";
+import type { Book, ReadingStatus } from "../../types/book";
 import Modal from "../Modal/Modal";
 import css from "./BookModal.module.css";
 
@@ -8,21 +8,36 @@ interface BookModalProps {
   book: Book;
   onClose: () => void;
   mode: BookModalMode;
+  status?: ReadingStatus;
   onAdd?: () => void;
   onStartReading?: () => void;
   isAdding?: boolean;
-  isAdded?: boolean;
+  isInLibrary?: boolean;
+  isCheckingLibrary?: boolean;
 }
 
 const BookModal = ({
   book,
   onClose,
   mode,
+  status,
   onAdd,
   onStartReading,
   isAdding,
-  isAdded,
+  isInLibrary,
+  isCheckingLibrary,
 }: BookModalProps) => {
+  const getReadingButtonText = () => {
+    switch (status) {
+      case "in-progress":
+        return "Continue reading";
+      case "done":
+        return "View statistics";
+      default:
+        return "Start reading";
+    }
+  };
+
   return (
     <Modal onClose={onClose} labelledBy="book-modal-title">
       <div className={css.bookContent}>
@@ -40,9 +55,15 @@ const BookModal = ({
             type="button"
             className={css.addButton}
             onClick={onAdd}
-            disabled={isAdding || isAdded}
+            disabled={isCheckingLibrary || isAdding || isInLibrary}
           >
-            {isAdding ? "Adding..." : isAdded ? "Added" : "Add to library"}
+            {isCheckingLibrary
+              ? "Checking library..."
+              : isInLibrary
+                ? "Already in library"
+                : isAdding
+                  ? "Adding..."
+                  : "Add to library"}
           </button>
         ) : (
           <button
@@ -50,7 +71,7 @@ const BookModal = ({
             className={css.addButton}
             onClick={onStartReading}
           >
-            Start reading
+            {getReadingButtonText()}
           </button>
         )}
       </div>

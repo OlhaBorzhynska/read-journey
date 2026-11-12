@@ -141,16 +141,6 @@ const Header = () => {
                 My library
               </NavLink>
             </li>
-
-            <li className={css.navItem}>
-              <NavLink
-                to="/reading"
-                className={getNavLinkClass}
-                onClick={handleMenuClose}
-              >
-                My training
-              </NavLink>
-            </li>
           </ul>
 
           <button

@@ -1,13 +1,20 @@
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Filters from "../../components/Filters/Filters";
 import RecommendedBooks from "../../components/RecommendedBooks/RecommendedBooks";
-import { getRecommendedBooks } from "../../services/bookService";
-import type { RecommendedBook, RecommendedBooksParams } from "../../types/book";
+import {
+  addRecommendedBook,
+  getOwnBooks,
+  getRecommendedBooks,
+} from "../../services/bookService";
+import type {
+  RecommendedBook,
+  RecommendedBooksParams,
+  UserBook,
+} from "../../types/book";
 import css from "./RecommendedPage.module.css";
 import StartWorkout from "../../components/StartWorkout/StartWorkout";
 import { useCallback, useEffect, useState } from "react";
 import BookModal from "../../components/BookModal/BookModal";
-import { addRecommendedBook } from "../../services/bookService";
 import toast from "react-hot-toast";
 import { isAxiosError } from "axios";
 
@@ -35,9 +42,10 @@ const RecommendedPage = () => {
   const [selectedBook, setSelectedBook] = useState<RecommendedBook | null>(
     null,
   );
-  const [addedBookIds, setAddedBookIds] = useState<string[]>([]);
 
   const [isAdding, setIsAdding] = useState(false);
+  const [libraryBooks, setLibraryBooks] = useState<UserBook[]>([]);
+  const [isLibraryLoading, setIsLibraryLoading] = useState(true);
 
   const handleBookSelect = (book: RecommendedBook) => {
     setSelectedBook(book);
@@ -47,15 +55,25 @@ const RecommendedPage = () => {
     setSelectedBook(null);
   }, []);
 
+  const isBookInLibrary = (book: RecommendedBook) => {
+    return libraryBooks.some(
+      (libraryBook) =>
+        libraryBook.title.trim().toLowerCase() ===
+          book.title.trim().toLowerCase() &&
+        libraryBook.author.trim().toLowerCase() ===
+          book.author.trim().toLowerCase(),
+    );
+  };
+
   const handleAddBook = async (id: string) => {
-    if (addedBookIds.includes(id)) return;
+    if (!selectedBook || isBookInLibrary(selectedBook) || isAdding) return;
 
     try {
       setIsAdding(true);
 
-      await addRecommendedBook(id);
+      const addedBook = await addRecommendedBook(id);
 
-      setAddedBookIds((prev) => [...prev, id]);
+      setLibraryBooks((prev) => [...prev, addedBook]);
 
       toast.success("Book added to your library!");
       setSelectedBook(null);
@@ -123,6 +141,21 @@ const RecommendedPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchLibraryBooks = async () => {
+      try {
+        const data = await getOwnBooks();
+        setLibraryBooks(data);
+      } catch {
+        toast.error("Failed to load your library.");
+      } finally {
+        setIsLibraryLoading(false);
+      }
+    };
+
+    fetchLibraryBooks();
+  }, []);
+
   const handleFilterSubmit = (values: FiltersValues) => {
     setFilters(values);
     setPage(1);
@@ -157,7 +190,8 @@ const RecommendedPage = () => {
           mode="recommended"
           onAdd={() => handleAddBook(selectedBook._id)}
           isAdding={isAdding}
-          isAdded={addedBookIds.includes(selectedBook._id)}
+          isInLibrary={isBookInLibrary(selectedBook)}
+          isCheckingLibrary={isLibraryLoading}
         />
       )}
     </main>

@@ -46,7 +46,8 @@
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
   padding: 10px 20px;
-  width: 141px;
+  width: fit-content;
+  min-width: 141px;
   height: 42px;
   background-color: transparent;
 
@@ -74,11 +75,11 @@
   cursor: not-allowed;
 }
 
-/* .addButton:not(:disabled):hover {
+.addButton:not(:disabled):hover {
   border-color: transparent;
   background-color: var(--color-text-primary);
   color: var(--color-background-primary);
-} */
+}
 
 @media screen and (min-width: 768px) {
   .bookImage {
@@ -101,7 +102,6 @@
 
   .addButton {
     padding: 10px 24px;
-    width: 162px;
     height: 46px;
 
     font-size: 16px;
