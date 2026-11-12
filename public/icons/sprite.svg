@@ -20,11 +20,11 @@
         <symbol id="icon-chevron-up" viewBox="0 0 32 32">
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M24 20l-8-8-8 8"></path>
         </symbol>
-        <symbol id="icon-block-stop" viewBox="0 0 32 32">
+        <symbol id="icon-block-start" viewBox="0 0 32 32">
             <path fill="#e90516" style="fill: var(--color2, #e90516)" d="M28.8 16c0 7.069-5.731 12.8-12.8 12.8s-12.8-5.731-12.8-12.8c0-7.069 5.731-12.8 12.8-12.8s12.8 5.731 12.8 12.8z"></path>
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.28" d="M31.36 16c0 8.483-6.877 15.36-15.36 15.36s-15.36-6.877-15.36-15.36c0-8.483 6.877-15.36 15.36-15.36s15.36 6.877 15.36 15.36z"></path>
         </symbol>
-        <symbol id="icon-block-start" viewBox="0 0 32 32">
+        <symbol id="icon-block-stop" viewBox="0 0 32 32">
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.28" d="M31.36 16c0 8.483-6.877 15.36-15.36 15.36s-15.36-6.877-15.36-15.36c0-8.483 6.877-15.36 15.36-15.36s15.36 6.877 15.36 15.36z"></path>
             <path fill="#e90516" style="fill: var(--color2, #e90516)" d="M11.52 9.6h8.96c1.060 0 1.92 0.86 1.92 1.92v8.96c0 1.060-0.86 1.92-1.92 1.92h-8.96c-1.060 0-1.92-0.86-1.92-1.92v-8.96c0-1.060 0.86-1.92 1.92-1.92z"></path>
         </symbol>

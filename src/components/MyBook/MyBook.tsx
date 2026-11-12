@@ -24,9 +24,18 @@ const MyBook = ({ book }: MyBookProps) => {
         <div className={css.bookDetails}>
           <h3 className={css.bookTitle}>{book.title}</h3>
           <p className={css.author}>{book.author}</p>
-          <p className={css.pages}>{book.totalPages} pages</p>
 
-          <span className={css.status}>In progress</span>
+          {book.status !== "done" && (
+            <svg className={css.statusIcon} aria-hidden="true">
+              <use
+                href={
+                  book.status === "in-progress"
+                    ? "/icons/sprite.svg#icon-block-stop"
+                    : "/icons/sprite.svg#icon-block-start"
+                }
+              />
+            </svg>
+          )}
         </div>
       </div>
     </section>
