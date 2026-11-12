@@ -52,7 +52,7 @@ const ReadingPage = () => {
     <main className="container">
       <div className={css.readingContainer}>
         <Dashboard>
-          <AddReading />
+          <AddReading book={book} onBookUpdate={setBook} />
           <Details />
         </Dashboard>
         <MyBook book={book} />
