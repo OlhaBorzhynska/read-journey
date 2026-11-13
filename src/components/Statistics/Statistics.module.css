@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  border-radius: 12px;
+  padding: 20px;
+  width: 295px;
+  background-color: var(--color-background-third);
 }
 
 .description {
@@ -10,8 +15,9 @@
 
 .chartWrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 116px;
+  height: 116px;
+  margin-bottom: 21px;
 }
 
 .chart {
@@ -27,11 +33,11 @@
 }
 
 .chartTrack {
-  stroke: #343434;
+  stroke: var(--color-background-secondary);
 }
 
 .chartProgress {
-  stroke: #30b94d;
+  stroke: var(--color-accent-green);
   stroke-linecap: round;
 }
 
@@ -40,29 +46,109 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: 600;
-  color: #f9f9f9;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.11;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
 .progressInfo {
-  align-self: flex-start;
-  margin-top: 16px;
+  align-self: center;
+  width: 95px;
+  margin-left: 11px;
 }
 
 .progressLabel {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
+  margin-bottom: 4px;
 }
 
 .legendSquare {
-  width: 12px;
-  height: 12px;
-  background-color: #30b94d;
-  border-radius: 2px;
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-accent-green);
+}
+
+.percentAge {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
 .pagesRead {
-  margin: 8px 0 0;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
+  margin-left: 29px;
+}
+
+@media screen and (min-width: 768px) {
+  .statistics {
+    padding: 28px;
+    width: 321px;
+  }
+
+  .chartWrapper {
+    width: 138px;
+    height: 138px;
+    margin-bottom: 16px;
+  }
+
+  .chartLabel {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .progressInfo {
+    width: 108px;
+    margin-left: 15px;
+  }
+
+  .progressLabel {
+    margin-bottom: 8px;
+  }
+
+  .percentAge {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .pagesRead {
+    font-size: 12px;
+    line-height: 1.17;
+    margin-left: 29px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .description {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+    max-width: 296px;
+  }
+
+  .statistics {
+    padding: 30px 20px 20px 20px;
+    width: 313px;
+  }
+
+  .chartWrapper {
+    width: 168px;
+    height: 168px;
+    margin-bottom: 20px;
+  }
 }
