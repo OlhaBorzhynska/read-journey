@@ -1,11 +1,133 @@
-.addReading,
 .details {
-  width: 100%;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.titleIconWrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
-  margin-bottom: 20px;
-  font-size: 20px;
   font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+}
+
+.progressContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
+}
+
+.starIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-background-third);
+}
+
+.starIcon {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.viewButtons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  transition: color 250ms ease;
+}
+
+.viewIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.viewButton.active {
+  color: var(--color-text-primary);
+}
+
+.viewButton:focus-visible {
+  outline: 1px solid var(--color-text-primary);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.diaryContent {
+}
+
+.statisticsContent {
+}
+
+@media screen and (min-width: 768px) {
+  .details {
+    padding-top: 0;
+    padding-left: 8px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .progressContent {
+    gap: 50px;
+    margin-bottom: 52px;
+  }
+
+  .starIconWrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .starIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .viewIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .details {
+    padding-top: 8px;
+    padding-left: 0;
+  }
+
+  .progressContent {
+    gap: 60px;
+    margin-bottom: 183px;
+  }
 }

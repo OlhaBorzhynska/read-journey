@@ -1,0 +1,68 @@
+.statistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description {
+  display: none;
+}
+
+.chartWrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.chartTrack,
+.chartProgress {
+  fill: none;
+  stroke-width: 8;
+}
+
+.chartTrack {
+  stroke: #343434;
+}
+
+.chartProgress {
+  stroke: #30b94d;
+  stroke-linecap: round;
+}
+
+.chartLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 600;
+  color: #f9f9f9;
+}
+
+.progressInfo {
+  align-self: flex-start;
+  margin-top: 16px;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendSquare {
+  width: 12px;
+  height: 12px;
+  background-color: #30b94d;
+  border-radius: 2px;
+}
+
+.pagesRead {
+  margin: 8px 0 0;
+}

@@ -68,7 +68,7 @@ const ReadingPage = () => {
       <div className={css.readingContainer}>
         <Dashboard>
           <AddReading book={book} onBookUpdate={setBook} />
-          <Details />
+          <Details book={book} onBookUpdate={setBook} />
         </Dashboard>
         <MyBook book={book} />
       </div>

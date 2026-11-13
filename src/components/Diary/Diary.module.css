@@ -1,0 +1,77 @@
+.diary {
+  width: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.diary::-webkit-scrollbar {
+  width: 4px;
+}
+
+.diary::-webkit-scrollbar-thumb {
+  background-color: #686868;
+  border-radius: 4px;
+}
+
+.diary::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.diaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.diaryItem {
+  padding: 16px;
+  border: 1px solid rgba(227, 227, 227, 0.3);
+  border-radius: 12px;
+}
+
+.diaryItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.date {
+  margin: 0;
+}
+
+.deleteButton {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.diaryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diaryInfo p {
+  margin: 0;
+}
+
+.infoLabel {
+  color: #686868;
+}
+
+.deleteIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+}
+
+.emptyMessage {
+  color: #686868;
+}

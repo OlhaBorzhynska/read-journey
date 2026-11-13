@@ -66,22 +66,6 @@ export interface DeleteBookResponse {
   id: string;
 }
 
-export interface BookProgress {
-  _id?: string;
-  startPage: number;
-  startReading: string;
-  finishPage?: number;
-  finishReading?: string;
-  speed?: number;
-  status: "active" | "inactive";
-}
-
-export interface TimeLeftToRead {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
 export interface ReadingRequest {
   id: string;
   page: number;
