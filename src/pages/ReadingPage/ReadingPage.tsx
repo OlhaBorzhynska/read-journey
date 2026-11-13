@@ -42,11 +42,26 @@ const ReadingPage = () => {
     };
   }, [bookId]);
 
-  if (!bookId) return <p>Book not found</p>;
+  if (!bookId)
+    return (
+      <div className={css.readingContainer}>
+        <p>Book not found</p>
+      </div>
+    );
 
-  if (error) return <p>Failed to load book</p>;
+  if (error)
+    return (
+      <div className={css.readingContainer}>
+        <p>Failed to load book</p>
+      </div>
+    );
 
-  if (!book) return <p>Loading...</p>;
+  if (!book)
+    return (
+      <div className={css.readingContainer}>
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
     <main className="container">

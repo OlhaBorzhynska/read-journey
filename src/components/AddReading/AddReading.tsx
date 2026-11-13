@@ -1,10 +1,12 @@
 import { useFormik } from "formik";
 import { isAxiosError } from "axios";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { createAddReadingSchema } from "./../../schemas/AddReadingSchema";
 
 import { startReading, finishReading } from "../../services/bookService";
 import type { BookDetails } from "../../types/book";
+import Modal from "../../components/Modal/Modal";
 import css from "./AddReading.module.css";
 
 interface AddReadingProps {
@@ -17,11 +19,17 @@ interface AddReadingFormValues {
 }
 
 const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
   const activeSession = book.progress.find(
     (session) => session.status === "active",
   );
+  const lastSession = book.progress[book.progress.length - 1];
+
+  const lastReadPage = lastSession?.finishPage;
 
   const isReading = Boolean(activeSession);
+  const isDone = book.status === "done";
   const minPage = activeSession ? activeSession.startPage + 1 : 1;
 
   const validationSchema = createAddReadingSchema(minPage, book.totalPages);
@@ -44,7 +52,7 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
 
         if (isReading) {
           if (updatedBook.status === "done") {
-            toast.success("Congratulations! You finished the book!");
+            setIsSuccessModalOpen(true);
           } else {
             toast.success("Reading session saved!");
           }
@@ -85,7 +93,15 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
               min={minPage}
               max={book.totalPages}
               step="1"
-              placeholder="0"
+              placeholder={
+                isDone
+                  ? "Book completed"
+                  : isReading
+                    ? "Enter the page"
+                    : lastReadPage
+                      ? `Last stopped at page ${lastReadPage}`
+                      : "0"
+              }
               value={formik.values.page}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -95,6 +111,7 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
                   ? "page-error"
                   : undefined
               }
+              disabled={isDone}
             />
           </div>
 
@@ -108,15 +125,37 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
         <button
           className={css.button}
           type="submit"
-          disabled={formik.isSubmitting}
+          disabled={formik.isSubmitting || isDone}
         >
-          {formik.isSubmitting
-            ? "Loading..."
-            : isReading
-              ? "To stop"
-              : "To start"}
+          {isDone
+            ? "Already read"
+            : formik.isSubmitting
+              ? "Loading..."
+              : isReading
+                ? "To stop"
+                : "To start"}
         </button>
       </form>
+
+      {isSuccessModalOpen && (
+        <Modal
+          onClose={() => setIsSuccessModalOpen(false)}
+          labelledBy="success-title"
+          modalClassName={css.successModal}
+        >
+          <div className={css.successContent}>
+            <img src="/images/books-icon.png" alt="Books icon" />
+
+            <h2 id="success-title">The book is read</h2>
+
+            <p>
+              It was an&nbsp;<span>exciting journey</span>, where each page
+              revealed new horizons, and the characters became inseparable
+              friends.
+            </p>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 };

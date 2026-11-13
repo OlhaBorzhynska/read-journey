@@ -66,7 +66,7 @@
 .addButton:hover,
 .addButton:focus-visible {
   border-color: transparent;
-  background: var(--color-text-primary);
+  background-color: var(--color-text-primary);
   color: var(--color-background-secondary);
 }
 
@@ -78,7 +78,7 @@
 .addButton:not(:disabled):hover {
   border-color: transparent;
   background-color: var(--color-text-primary);
-  color: var(--color-background-primary);
+  color: var(--color-background-secondary);
 }
 
 @media screen and (min-width: 768px) {

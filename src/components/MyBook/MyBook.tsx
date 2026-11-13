@@ -6,6 +6,10 @@ interface MyBookProps {
 }
 
 const MyBook = ({ book }: MyBookProps) => {
+  const isReading = book.progress.some(
+    (session) => session.status === "active",
+  );
+
   return (
     <section className={css.myBook}>
       <div className={css.titleTimeWrapper}>
@@ -25,17 +29,17 @@ const MyBook = ({ book }: MyBookProps) => {
           <h3 className={css.bookTitle}>{book.title}</h3>
           <p className={css.author}>{book.author}</p>
 
-          {book.status !== "done" && (
-            <svg className={css.statusIcon} aria-hidden="true">
-              <use
-                href={
-                  book.status === "in-progress"
+          <svg className={css.statusIcon} aria-hidden="true">
+            <use
+              href={
+                book.status === "done"
+                  ? "/icons/sprite.svg#icon-block-done"
+                  : isReading
                     ? "/icons/sprite.svg#icon-block-stop"
                     : "/icons/sprite.svg#icon-block-start"
-                }
-              />
-            </svg>
-          )}
+              }
+            />
+          </svg>
         </div>
       </div>
     </section>

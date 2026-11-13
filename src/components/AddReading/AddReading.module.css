@@ -69,6 +69,7 @@
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
+  -moz-appearance: textfield;
 }
 
 .fieldGroup {
@@ -91,14 +92,16 @@
   margin: 0;
 }
 
-.input {
-  -moz-appearance: textfield;
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .button {
   align-self: flex-start;
   padding: 6px 16px;
-  width: 91px;
+  width: fit-content;
+  min-width: 91px;
   height: 38px;
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
@@ -129,6 +132,45 @@
   cursor: not-allowed;
 }
 
+.successContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 26px;
+}
+
+.successContent img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.successContent h2 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.successContent p {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  text-align: center;
+  max-width: 242px;
+}
+
+.successContent p span {
+  color: var(--color-text-primary);
+}
+
 @media screen and (min-width: 768px) {
   .title {
     font-size: 14px;
@@ -157,12 +199,34 @@
 
   .button {
     padding: 8px 24px;
-    width: 114px;
     height: 42px;
     margin-top: 12px;
 
     font-size: 16px;
     line-height: 1.13;
+  }
+
+  .successModal {
+    max-width: 342px;
+  }
+
+  .successContent {
+    padding: 10px 30px;
+  }
+
+  .successContent img {
+    width: 68px;
+    height: 70px;
+    margin-bottom: 32px;
+  }
+
+  .successContent h2 {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .successContent p {
+    max-width: 242px;
   }
 }
 

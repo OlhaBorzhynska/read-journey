@@ -84,6 +84,16 @@
   color: var(--color-text-primary);
 }
 
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input {
+  -moz-appearance: textfield;
+}
+
 .button {
   align-self: flex-start;
   width: 105px;

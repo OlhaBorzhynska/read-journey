@@ -28,6 +28,17 @@
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.28" d="M31.36 16c0 8.483-6.877 15.36-15.36 15.36s-15.36-6.877-15.36-15.36c0-8.483 6.877-15.36 15.36-15.36s15.36 6.877 15.36 15.36z"></path>
             <path fill="#e90516" style="fill: var(--color2, #e90516)" d="M11.52 9.6h8.96c1.060 0 1.92 0.86 1.92 1.92v8.96c0 1.060-0.86 1.92-1.92 1.92h-8.96c-1.060 0-1.92-0.86-1.92-1.92v-8.96c0-1.060 0.86-1.92 1.92-1.92z"></path>
         </symbol>
+        <symbol id="icon-block-done" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="13" fill="#30b94d" />
+            <path
+    d="M9.5 16.2l4.2 4.2 8.8-9"
+    fill="none"
+    stroke="#141414"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+        </symbol>
         <symbol id="icon-hourglass" viewBox="0 0 32 32">
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M16 16l-5.697-4.748c-0.846-0.705-1.27-1.058-1.574-1.49-0.27-0.383-0.47-0.811-0.591-1.263-0.137-0.511-0.137-1.061-0.137-2.163v-3.669M16 16l5.697-4.748c0.847-0.705 1.27-1.058 1.574-1.49 0.27-0.383 0.47-0.811 0.592-1.263 0.137-0.511 0.137-1.061 0.137-2.163v-3.669M16 16l-5.697 4.748c-0.846 0.705-1.27 1.058-1.574 1.49-0.27 0.383-0.47 0.811-0.591 1.263-0.137 0.511-0.137 1.061-0.137 2.163v3.669M16 16l5.697 4.748c0.847 0.705 1.27 1.058 1.574 1.49 0.27 0.383 0.47 0.811 0.592 1.263 0.137 0.511 0.137 1.061 0.137 2.163v3.669"></path>
             <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M5.333 2.667h21.333M5.333 29.333h21.333"></path>
