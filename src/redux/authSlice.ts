@@ -4,7 +4,11 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { getAccessToken, clearTokens } from "../services/tokenService";
+import {
+  getAccessToken,
+  clearTokens,
+  getRefreshToken,
+} from "../services/tokenService";
 import { getCurrentUser, logoutUser } from "../services/authService";
 import axios from "axios";
 
@@ -24,9 +28,10 @@ export const refreshUser = createAsyncThunk(
   "auth/refreshUser",
   async (_, thunkAPI) => {
     const accessToken = getAccessToken();
+    const refreshToken = getRefreshToken();
 
-    if (!accessToken) {
-      return thunkAPI.rejectWithValue("No access token");
+    if (!accessToken && !refreshToken) {
+      return thunkAPI.rejectWithValue("No tokens");
     }
 
     try {

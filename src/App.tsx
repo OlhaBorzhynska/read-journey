@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./redux/hooks";
-import { refreshUser } from "./redux/authSlice";
+import { refreshUser, clearUser } from "./redux/authSlice";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
@@ -17,7 +17,17 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const handleAuthLogout = () => {
+      dispatch(clearUser());
+    };
+
+    window.addEventListener("auth:logout", handleAuthLogout);
+
     dispatch(refreshUser());
+
+    return () => {
+      window.removeEventListener("auth:logout", handleAuthLogout);
+    };
   }, [dispatch]);
 
   return (
