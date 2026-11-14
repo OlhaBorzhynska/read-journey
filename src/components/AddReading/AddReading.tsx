@@ -24,15 +24,25 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
   const activeSession = book.progress.find(
     (session) => session.status === "active",
   );
-  const lastSession = book.progress[book.progress.length - 1];
 
-  const lastReadPage = lastSession?.finishPage;
+  const lastCompletedSession = [...book.progress]
+    .filter((session) => session.status === "inactive")
+    .at(-1);
+
+  const lastReadPage = lastCompletedSession?.finishPage;
 
   const isReading = Boolean(activeSession);
   const isDone = book.status === "done";
-  const minPage = activeSession ? activeSession.startPage + 1 : 1;
 
-  const validationSchema = createAddReadingSchema(minPage, book.totalPages);
+  const minPage = activeSession
+    ? activeSession.startPage + 1
+    : lastReadPage
+      ? lastReadPage + 1
+      : 1;
+
+  const maxPage = isReading ? book.totalPages : minPage;
+
+  const validationSchema = createAddReadingSchema(minPage, maxPage);
 
   const formik = useFormik<AddReadingFormValues>({
     initialValues: {
@@ -91,7 +101,7 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
               name="page"
               type="number"
               min={minPage}
-              max={book.totalPages}
+              max={maxPage}
               step="1"
               placeholder={
                 isDone

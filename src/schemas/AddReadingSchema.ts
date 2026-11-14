@@ -9,6 +9,6 @@ export const createAddReadingSchema = (minPage: number, totalPages: number) =>
       .typeError("Enter a valid page number")
       .integer("Page number must be an integer")
       .min(minPage, `Page number must be at least ${minPage}`)
-      .max(totalPages, `The book has only ${totalPages} pages`)
+      .max(totalPages, `Please enter page ${minPage}`)
       .required("Page number is required"),
   });
