@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getBookById } from "../../services/bookService";
@@ -10,6 +10,8 @@ import MyBook from "../../components/MyBook/MyBook";
 import css from "./ReadingPage.module.css";
 
 const ReadingPage = () => {
+  const pageInputRef = useRef<HTMLInputElement>(null);
+
   const { bookId } = useParams();
 
   const [book, setBook] = useState<BookDetails | null>(null);
@@ -67,10 +69,17 @@ const ReadingPage = () => {
     <main className="container">
       <div className={css.readingContainer}>
         <Dashboard>
-          <AddReading book={book} onBookUpdate={setBook} />
+          <AddReading
+            book={book}
+            onBookUpdate={setBook}
+            inputRef={pageInputRef}
+          />
           <Details book={book} onBookUpdate={setBook} />
         </Dashboard>
-        <MyBook book={book} />
+        <MyBook
+          book={book}
+          onStatusClick={() => pageInputRef.current?.focus()}
+        />
       </div>
     </main>
   );

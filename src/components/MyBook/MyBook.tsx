@@ -3,9 +3,10 @@ import css from "./MyBook.module.css";
 
 interface MyBookProps {
   book: BookDetails;
+  onStatusClick: () => void;
 }
 
-const MyBook = ({ book }: MyBookProps) => {
+const MyBook = ({ book, onStatusClick }: MyBookProps) => {
   const isReading = book.progress.some(
     (session) => session.status === "active",
   );
@@ -29,17 +30,30 @@ const MyBook = ({ book }: MyBookProps) => {
           <h3 className={css.bookTitle}>{book.title}</h3>
           <p className={css.author}>{book.author}</p>
 
-          <svg className={css.statusIcon} aria-hidden="true">
-            <use
-              href={
-                book.status === "done"
-                  ? "/icons/sprite.svg#icon-block-done"
-                  : isReading
-                    ? "/icons/sprite.svg#icon-block-stop"
-                    : "/icons/sprite.svg#icon-block-start"
+          {book.status === "done" ? (
+            <svg className={css.statusIcon} aria-hidden="true">
+              <use href="/icons/sprite.svg#icon-block-done" />
+            </svg>
+          ) : (
+            <button
+              className={css.statusButton}
+              type="button"
+              onClick={onStatusClick}
+              aria-label={
+                isReading ? "Go to stop page input" : "Go to start page input"
               }
-            />
-          </svg>
+            >
+              <svg className={css.statusIcon} aria-hidden="true">
+                <use
+                  href={
+                    isReading
+                      ? "/icons/sprite.svg#icon-block-stop"
+                      : "/icons/sprite.svg#icon-block-start"
+                  }
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import { isAxiosError } from "axios";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import { createAddReadingSchema } from "./../../schemas/AddReadingSchema";
 
@@ -8,17 +7,19 @@ import { startReading, finishReading } from "../../services/bookService";
 import type { BookDetails } from "../../types/book";
 import Modal from "../../components/Modal/Modal";
 import css from "./AddReading.module.css";
+import { useState, type RefObject } from "react";
 
 interface AddReadingProps {
   book: BookDetails;
   onBookUpdate: (book: BookDetails) => void;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
 interface AddReadingFormValues {
   page: string;
 }
 
-const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
+const AddReading = ({ book, onBookUpdate, inputRef }: AddReadingProps) => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const activeSession = book.progress.find(
@@ -86,7 +87,9 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
     <section className={css.addReading}>
       <form className={css.form} onSubmit={formik.handleSubmit}>
         <label className={css.title} htmlFor="page">
-          {isReading ? "Stop page:" : "Start page:"}
+          {isReading
+            ? `Stop page (maximum ${book.totalPages}):`
+            : "Start page:"}
         </label>
 
         <div className={css.fieldGroup}>
@@ -96,6 +99,7 @@ const AddReading = ({ book, onBookUpdate }: AddReadingProps) => {
             </label>
 
             <input
+              ref={inputRef}
               className={css.input}
               id="page"
               name="page"

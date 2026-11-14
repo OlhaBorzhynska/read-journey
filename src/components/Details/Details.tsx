@@ -68,8 +68,8 @@ const Details = ({ book, onBookUpdate }: DetailsProps) => {
       {!hasReadingHistory && (
         <div className={css.progressContent}>
           <p className={css.description}>
-            Your reading progress will appear here. Start a reading session
-            using the button above to track your journey.
+            Here you will see when and how much you read. To record, click on
+            the red button above.
           </p>
 
           <div className={css.starIconWrapper} aria-hidden="true">
