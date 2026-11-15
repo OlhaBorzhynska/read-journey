@@ -23,7 +23,9 @@ const Statistics = ({ book }: StatisticsProps) => {
   const pagesRead = Math.min(book.totalPages, Math.max(0, ...reachedPages));
 
   const percentage =
-    book.totalPages > 0 ? Math.round((pagesRead / book.totalPages) * 100) : 0;
+    book.totalPages > 0
+      ? Number(((pagesRead / book.totalPages) * 100).toFixed(1))
+      : 0;
 
   return (
     <>

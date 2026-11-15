@@ -48,13 +48,16 @@ const Diary = ({ book, onBookUpdate }: DiaryProps) => {
   };
 
   const getReadingPercentage = (finishPage: number) => {
-    return Math.min(100, Math.round((finishPage / book.totalPages) * 100));
+    return Math.min(
+      100,
+      Number(((finishPage / book.totalPages) * 100).toFixed(1)),
+    );
   };
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString("uk-UA", {
       day: "2-digit",
-      month: "long",
+      month: "2-digit",
       year: "numeric",
     });
   };
@@ -101,35 +104,42 @@ const Diary = ({ book, onBookUpdate }: DiaryProps) => {
             return (
               <li className={css.diaryItem} key={readingId}>
                 <div className={css.diaryItemHeader}>
-                  <p className={css.date}>{formatDate(finishReading)}</p>
+                  <div className={css.dateWrapper}>
+                    <span className={css.dateIndicator} />
+                    <p className={css.date}>{formatDate(finishReading)}</p>
+                  </div>
 
-                  <button
-                    type="button"
-                    className={css.deleteButton}
-                    aria-label="Delete reading session"
-                    disabled={deletingId === readingId}
-                    onClick={() => handleDelete(readingId)}
-                  >
-                    <svg className={css.deleteIcon} aria-hidden="true">
-                      <use href="/icons/sprite.svg#icon-trash" />
-                    </svg>
-                  </button>
+                  <p className={css.pagesCount}>{finishPage} pages</p>
                 </div>
 
-                <div className={css.diaryInfo}>
-                  <p>
-                    <span className={css.infoLabel}>Pages:</span> {pagesRead}
-                  </p>
+                <div className={css.diaryItemContent}>
+                  <div className={css.readingStats}>
+                    <p className={css.percentage}>{percentage}%</p>
+                    <p className={css.duration}>{formatDuration(duration)}</p>
+                  </div>
 
-                  <p>
-                    <span className={css.infoLabel}>Time:</span>{" "}
-                    {formatDuration(duration)}
-                  </p>
+                  <div className={css.diaryActions}>
+                    <div className={css.readingSpeed}>
+                      <div className={css.speedChart} />
+                      <p className={css.speedValue}>
+                        {Math.round(pagesRead / (duration / 60))} pages
+                        <br />
+                        per hour
+                      </p>
+                    </div>
 
-                  <p>
-                    <span className={css.infoLabel}>Progress:</span>{" "}
-                    {percentage}%
-                  </p>
+                    <button
+                      type="button"
+                      className={css.deleteButton}
+                      aria-label="Delete reading session"
+                      disabled={deletingId === readingId}
+                      onClick={() => handleDelete(readingId)}
+                    >
+                      <svg className={css.deleteIcon} aria-hidden="true">
+                        <use href="/icons/sprite.svg#icon-trash" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </li>
             );
