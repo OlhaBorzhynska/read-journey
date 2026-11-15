@@ -9,9 +9,12 @@ import Details from "../../components/Details/Details";
 import MyBook from "../../components/MyBook/MyBook";
 import css from "./ReadingPage.module.css";
 import Loader from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const ReadingPage = () => {
   const pageInputRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
 
   const { bookId } = useParams();
 
@@ -57,14 +60,36 @@ const ReadingPage = () => {
 
   if (!bookId)
     return (
-      <div className={css.loadingContainer}>
-        <p>Book not found</p>
+      <div className={css.notFoundContainer}>
+        <div className={css.notFoundContent}>
+          <img
+            className={css.notFoundIcon}
+            src="/images/books-icon.png"
+            alt="books icon"
+            aria-hidden="true"
+          />
+
+          <h2 className={css.notFoundTitle}>Book not found</h2>
+
+          <p className={css.notFoundText}>
+            We couldn't find this book. It may have been removed or is no longer
+            available.
+          </p>
+
+          <button
+            type="button"
+            className={css.notFoundButton}
+            onClick={() => navigate("/library")}
+          >
+            Go to My Library
+          </button>
+        </div>
       </div>
     );
 
   if (error)
     return (
-      <div className={css.loadingContainer}>
+      <div className={css.readingContainer}>
         <p>Failed to load book</p>
       </div>
     );
