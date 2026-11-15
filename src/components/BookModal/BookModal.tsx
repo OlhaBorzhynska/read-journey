@@ -1,6 +1,7 @@
 import type { Book, ReadingStatus } from "../../types/book";
 import Modal from "../Modal/Modal";
 import css from "./BookModal.module.css";
+import BookCover from "../BookCover/BookCover";
 
 type BookModalMode = "recommended" | "library";
 
@@ -41,7 +42,11 @@ const BookModal = ({
   return (
     <Modal onClose={onClose} labelledBy="book-modal-title">
       <div className={css.bookContent}>
-        <img className={css.bookImage} src={book.imageUrl} alt={book.title} />
+        <BookCover
+          className={css.bookImage}
+          imageUrl={book.imageUrl}
+          title={book.title}
+        />
 
         <h2 id="book-modal-title" className={css.bookTitle}>
           {book.title}

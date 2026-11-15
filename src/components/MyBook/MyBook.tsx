@@ -1,5 +1,6 @@
 import type { BookDetails } from "../../types/book";
 import css from "./MyBook.module.css";
+import BookCover from "../BookCover/BookCover";
 
 interface MyBookProps {
   book: BookDetails;
@@ -24,7 +25,11 @@ const MyBook = ({ book, onStatusClick }: MyBookProps) => {
       </div>
 
       <div className={css.bookInfo}>
-        <img className={css.bookImage} src={book.imageUrl} alt={book.title} />
+        <BookCover
+          className={css.bookImage}
+          imageUrl={book.imageUrl}
+          title={book.title}
+        />
 
         <div className={css.bookDetails}>
           <h3 className={css.bookTitle}>{book.title}</h3>

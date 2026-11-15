@@ -7,6 +7,7 @@ import css from "./MyLibraryBooks.module.css";
 import { useNavigate } from "react-router-dom";
 import BookModal from "../BookModal/BookModal";
 import DeleteBookModal from "../DeleteBookModal/DeleteBookModal";
+import BookCover from "../BookCover/BookCover";
 
 interface MyLibraryBooksProps {
   refreshKey: number;
@@ -227,11 +228,10 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
                 onClick={() => handleBookClick(book)}
                 aria-label={`View details for ${book.title}`}
               >
-                <img
+                <BookCover
                   className={css.bookImage}
-                  src={book.imageUrl}
-                  alt={book.title}
-                  loading="lazy"
+                  imageUrl={book.imageUrl}
+                  title={book.title}
                 />
               </button>
 
