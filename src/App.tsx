@@ -12,6 +12,7 @@ import RecommendedPage from "./pages/RecommendedPage/RecommendedPage";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
 import MainLayout from "./layouts/MainLayout/MainLayout";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -46,7 +47,7 @@ function App() {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
