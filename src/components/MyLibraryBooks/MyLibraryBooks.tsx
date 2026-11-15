@@ -6,6 +6,7 @@ import type { UserBook, ReadingStatus } from "../../types/book";
 import css from "./MyLibraryBooks.module.css";
 import { useNavigate } from "react-router-dom";
 import BookModal from "../BookModal/BookModal";
+import DeleteBookModal from "../DeleteBookModal/DeleteBookModal";
 
 interface MyLibraryBooksProps {
   refreshKey: number;
@@ -29,6 +30,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
   const [selectedBook, setSelectedBook] = useState<UserBook | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
+  const [bookToDelete, setBookToDelete] = useState<UserBook | null>(null);
 
   const navigate = useNavigate();
 
@@ -95,15 +97,19 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
     setIsFilterOpen(false);
   };
 
-  const handleDeleteBook = async (id: string) => {
-    if (deletingBookId) return;
+  const handleDeleteBook = async () => {
+    if (!bookToDelete || deletingBookId) return;
+
+    const bookId = bookToDelete._id;
 
     try {
-      setDeletingBookId(id);
+      setDeletingBookId(bookId);
 
-      await deleteBook(id);
+      await deleteBook(bookId);
 
-      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
+
+      setBookToDelete(null);
 
       toast.success("Book removed from your library.");
     } catch (error) {
@@ -239,7 +245,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
                 <button
                   type="button"
                   className={css.deleteButton}
-                  onClick={() => handleDeleteBook(book._id)}
+                  onClick={() => setBookToDelete(book)}
                   disabled={deletingBookId === book._id}
                   aria-label={`Delete ${book.title} from library`}
                 >
@@ -259,6 +265,15 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
           mode="library"
           status={selectedBook.status}
           onStartReading={handleStartReading}
+        />
+      )}
+
+      {bookToDelete && (
+        <DeleteBookModal
+          bookTitle={bookToDelete.title}
+          onClose={() => setBookToDelete(null)}
+          onConfirm={handleDeleteBook}
+          isDeleting={deletingBookId === bookToDelete._id}
         />
       )}
     </section>

@@ -240,6 +240,7 @@
 }
 
 .deleteIcon {
+  display: block;
   width: 14px;
   height: 14px;
   stroke: #e85050;

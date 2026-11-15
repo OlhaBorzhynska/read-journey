@@ -36,14 +36,6 @@ export const getCurrentUser = async (): Promise<CurrentUserResponse> => {
   return data;
 };
 
-// export const refreshUser = async (): Promise<RefreshResponse> => {
-//   const { data } = await api.get<RefreshResponse>("/users/current/refresh");
-
-//   saveTokens(data.token, data.refreshToken);
-
-//   return data;
-// };
-
 export const logoutUser = async (): Promise<LogoutResponse> => {
   try {
     const { data } = await api.post<LogoutResponse>("/users/signout");

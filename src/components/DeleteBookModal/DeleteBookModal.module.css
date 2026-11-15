@@ -1,0 +1,113 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 10px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.text {
+  margin-bottom: 18px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.bookTitle {
+  color: var(--color-text-primary);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.cancelButton,
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+  min-height: 44px;
+  padding: 12px;
+
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.cancelButton:hover:not(:disabled),
+.cancelButton:focus-visible {
+  border-color: transparent;
+  background-color: var(--color-text-primary);
+  color: var(--color-background-secondary);
+}
+
+.deleteButton {
+  border-color: transparent;
+  background-color: var(--color-accent-error);
+  color: var(--color-text-primary);
+}
+
+.deleteButton:hover:not(:disabled),
+.deleteButton:focus-visible {
+  border-color: rgba(249, 249, 249, 0.3);
+  color: var(--color-background-secondary);
+}
+
+.cancelButton:focus-visible,
+.deleteButton:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}
+
+.cancelButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+}
