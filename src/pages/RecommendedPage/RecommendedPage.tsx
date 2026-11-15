@@ -30,6 +30,14 @@ const getBooksLimit = () => {
 type FiltersValues = Pick<RecommendedBooksParams, "title" | "author">;
 
 const RecommendedPage = () => {
+  useEffect(() => {
+    document.title = "Recommended | Read Journey";
+
+    return () => {
+      document.title = "Read Journey — Your Personal Book Tracker";
+    };
+  }, []);
+
   const [books, setBooks] = useState<RecommendedBook[]>([]);
   const [filters, setFilters] = useState<FiltersValues>({});
   const [page, setPage] = useState(1);

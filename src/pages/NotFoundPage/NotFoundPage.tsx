@@ -1,8 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import css from "./NotFoundPage.module.css";
+import { useEffect } from "react";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Page Not Found | Read Journey";
+
+    return () => {
+      document.title = "Read Journey — Your Personal Book Tracker";
+    };
+  }, []);
 
   return (
     <main className={`container ${css.page}`}>

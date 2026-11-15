@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import Logo from "../../components/Logo/Logo";
 import css from "./LoginPage.module.css";
@@ -16,6 +16,14 @@ type FieldStatus = "error" | "success" | "";
 
 const LoginPage = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  useEffect(() => {
+    document.title = "Log In | Read Journey";
+
+    return () => {
+      document.title = "Read Journey — Your Personal Book Tracker";
+    };
+  }, []);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

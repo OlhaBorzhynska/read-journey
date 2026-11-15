@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddBook from "../../components/AddBook/AddBook";
 import MyLibraryBooks from "../../components/MyLibraryBooks/MyLibraryBooks";
 import RecommendedSection from "../../components/RecommendedSection/RecommendedSection";
@@ -7,6 +7,14 @@ import css from "./LibraryPage.module.css";
 
 const LibraryPage = () => {
   const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    document.title = "My Library | Read Journey";
+
+    return () => {
+      document.title = "Read Journey — Your Personal Book Tracker";
+    };
+  }, []);
 
   const handleBookAdded = () => {
     setRefreshKey((prev) => prev + 1);

@@ -18,6 +18,16 @@ const ReadingPage = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (book) {
+      document.title = `${book.title} | Read Journey`;
+    }
+
+    return () => {
+      document.title = "Read Journey — Your Personal Book Tracker";
+    };
+  }, [book]);
+
+  useEffect(() => {
     if (!bookId) return;
 
     let isActive = true;
