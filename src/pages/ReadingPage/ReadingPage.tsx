@@ -89,8 +89,24 @@ const ReadingPage = () => {
 
   if (error)
     return (
-      <div className={css.readingContainer}>
-        <p>Failed to load book</p>
+      <div className={css.notFoundContainer}>
+        <div className={css.notFoundContent}>
+          <p className={css.errorCode}>404</p>
+
+          <h2 className={css.notFoundTitle}>Failed to load book</h2>
+
+          <p className={css.notFoundText}>
+            We couldn't load this book. It is no longer available.
+          </p>
+
+          <button
+            type="button"
+            className={css.notFoundButton}
+            onClick={() => navigate("/library")}
+          >
+            Go to My Library
+          </button>
+        </div>
       </div>
     );
 

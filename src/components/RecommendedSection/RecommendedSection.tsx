@@ -57,7 +57,7 @@ const RecommendedSection = () => {
       )}
 
       {error && (
-        <p className={css.message}>
+        <p className="errorMessage">
           Failed to load recommended books. Please try again.
         </p>
       )}

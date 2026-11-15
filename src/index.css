@@ -76,10 +76,23 @@ img {
   padding: 0 16px;
 }
 
+.errorMessage {
+  color: var(--color-accent-error);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
     padding: 0 32px;
+  }
+
+  .errorMessage {
+    font-size: 16px;
   }
 }
 

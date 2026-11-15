@@ -202,7 +202,7 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
         </div>
       )}
 
-      {error && <p className={css.error}>{error}</p>}
+      {error && <p className="errorMessage">{error}</p>}
 
       {!isLoading && !error && books.length === 0 && (
         <div className={css.emptyState}>

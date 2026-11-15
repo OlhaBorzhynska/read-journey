@@ -29,6 +29,14 @@
   text-align: center;
 }
 
+.errorCode {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-accent-error);
+}
+
 .notFoundIcon {
   display: block;
   width: 40px;

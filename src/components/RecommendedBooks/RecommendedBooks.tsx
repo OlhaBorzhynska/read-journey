@@ -59,7 +59,7 @@ const RecommendedBooks = ({
         </div>
       )}
 
-      {error && <p>{error}</p>}
+      {error && <p className="errorMessage">{error}</p>}
 
       {!isLoading && !error && books.length === 0 && <p>No books found.</p>}
 
