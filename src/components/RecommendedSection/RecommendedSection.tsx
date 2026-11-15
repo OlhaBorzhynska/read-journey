@@ -5,6 +5,7 @@ import { getRecommendedBooks } from "../../services/bookService";
 import type { RecommendedBook } from "../../types/book";
 
 import css from "./RecommendedSection.module.css";
+import Loader from "../Loader/Loader";
 
 const RecommendedSection = () => {
   const [books, setBooks] = useState<RecommendedBook[]>([]);
@@ -49,7 +50,11 @@ const RecommendedSection = () => {
     <section className={css.recommendedSection}>
       <h2 className={css.title}>Recommended books</h2>
 
-      {isLoading && <p className={css.message}>Loading books...</p>}
+      {isLoading && (
+        <div className={css.loadingContainer}>
+          <Loader size="medium" />
+        </div>
+      )}
 
       {error && (
         <p className={css.message}>

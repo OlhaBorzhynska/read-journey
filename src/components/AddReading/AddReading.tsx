@@ -8,6 +8,7 @@ import type { BookDetails } from "../../types/book";
 import Modal from "../../components/Modal/Modal";
 import css from "./AddReading.module.css";
 import { useState, type RefObject } from "react";
+import Loader from "../Loader/Loader";
 
 interface AddReadingProps {
   book: BookDetails;
@@ -141,13 +142,15 @@ const AddReading = ({ book, onBookUpdate, inputRef }: AddReadingProps) => {
           type="submit"
           disabled={formik.isSubmitting || isDone}
         >
-          {isDone
-            ? "Already read"
-            : formik.isSubmitting
-              ? "Loading..."
-              : isReading
-                ? "To stop"
-                : "To start"}
+          {isDone ? (
+            "Already read"
+          ) : formik.isSubmitting ? (
+            <Loader size="small" />
+          ) : isReading ? (
+            "To stop"
+          ) : (
+            "To start"
+          )}
         </button>
       </form>
 

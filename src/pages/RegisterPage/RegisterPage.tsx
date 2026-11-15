@@ -10,6 +10,7 @@ import { registerUser } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "../../redux/hooks";
 import { refreshUser } from "../../redux/authSlice";
+import Loader from "../../components/Loader/Loader";
 
 type FieldName = "name" | "email" | "password";
 type FieldStatus = "error" | "success" | "";
@@ -240,7 +241,11 @@ const RegisterPage = () => {
                   className={css.submitButton}
                   disabled={formik.isSubmitting}
                 >
-                  {formik.isSubmitting ? "Loading..." : "Registration"}
+                  {formik.isSubmitting ? (
+                    <Loader size="small" />
+                  ) : (
+                    "Registration"
+                  )}
                 </button>
 
                 <Link to="/login" className={css.loginLink}>

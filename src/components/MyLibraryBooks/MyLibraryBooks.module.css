@@ -1,3 +1,11 @@
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 100%;
+}
+
 .library {
   border-radius: 30px;
   padding: 40px 20px 65px 20px;

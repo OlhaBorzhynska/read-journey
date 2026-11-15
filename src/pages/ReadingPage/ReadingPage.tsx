@@ -8,6 +8,7 @@ import AddReading from "../../components/AddReading/AddReading";
 import Details from "../../components/Details/Details";
 import MyBook from "../../components/MyBook/MyBook";
 import css from "./ReadingPage.module.css";
+import Loader from "../../components/Loader/Loader";
 
 const ReadingPage = () => {
   const pageInputRef = useRef<HTMLInputElement>(null);
@@ -56,22 +57,22 @@ const ReadingPage = () => {
 
   if (!bookId)
     return (
-      <div className={css.readingContainer}>
+      <div className={css.loadingContainer}>
         <p>Book not found</p>
       </div>
     );
 
   if (error)
     return (
-      <div className={css.readingContainer}>
+      <div className={css.loadingContainer}>
         <p>Failed to load book</p>
       </div>
     );
 
   if (!book)
     return (
-      <div className={css.readingContainer}>
-        <p>Loading...</p>
+      <div className={css.loadingContainer}>
+        <Loader size="large" />
       </div>
     );
 

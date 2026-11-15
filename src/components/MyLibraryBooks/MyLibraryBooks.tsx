@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import BookModal from "../BookModal/BookModal";
 import DeleteBookModal from "../DeleteBookModal/DeleteBookModal";
 import BookCover from "../BookCover/BookCover";
+import Loader from "../Loader/Loader";
 
 interface MyLibraryBooksProps {
   refreshKey: number;
@@ -195,7 +196,11 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
         </div>
       </div>
 
-      {isLoading && <p className={css.message}>Loading books...</p>}
+      {isLoading && (
+        <div className={css.loadingContainer}>
+          <Loader size="medium" />
+        </div>
+      )}
 
       {error && <p className={css.error}>{error}</p>}
 

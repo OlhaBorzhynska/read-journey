@@ -1,4 +1,5 @@
 import type { RecommendedBook } from "../../types/book";
+import Loader from "../Loader/Loader";
 import css from "./RecommendedBooks.module.css";
 
 interface RecommendedBooksProps {
@@ -52,7 +53,11 @@ const RecommendedBooks = ({
         </div>
       </div>
 
-      {isLoading && <p>Loading books...</p>}
+      {isLoading && (
+        <div className={css.loadingContainer}>
+          <Loader size="medium" />
+        </div>
+      )}
 
       {error && <p>{error}</p>}
 

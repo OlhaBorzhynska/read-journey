@@ -10,6 +10,7 @@ import { loginUser } from "../../services/authService";
 import { useAppDispatch } from "../../redux/hooks";
 import { refreshUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 type FieldName = "email" | "password";
 type FieldStatus = "error" | "success" | "";
@@ -210,7 +211,7 @@ const LoginPage = () => {
                   className={css.submitButton}
                   disabled={formik.isSubmitting}
                 >
-                  {formik.isSubmitting ? "Loading..." : "Log In"}
+                  {formik.isSubmitting ? <Loader size="small" /> : "Log In"}
                 </button>
 
                 <Link to="/register" className={css.registerLink}>
