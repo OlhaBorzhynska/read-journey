@@ -1,25 +1,31 @@
 # 📚 Read Journey
 
 <p align="center">
-  <img src="public/og-image.jpg" alt="Read Journey" width="100%">
+  <img src="public/read-journey-og.png" alt="Read Journey" width="80%">
 </p>
+
+---
 
 ## 📖 About the Project
 
-Read Journey is a book tracking application designed to help users organize their personal libraries, track reading progress, and build consistent reading habits.
+**🌐 Live Page:** [View Project](https://read-journey-wine.vercel.app/).
+
+**Read Journey** is a book tracking application designed to help users organize their personal libraries, track reading progress, and build consistent reading habits.
 
 The application allows users to discover recommended books, create their own library, manage their reading sessions, and monitor their progress through reading statistics and a personal reading diary.
 
 Users can track the number of pages they have read, record reading sessions, calculate reading speed, and view their progress toward completing each book.
 
-The project was developed as a personal portfolio project based on the provided Figma design and GoIT backend API.
+The project was developed as a personal portfolio project based on the provided [Figma design](https://www.figma.com/file/z3m0rdBcEfLTJUBDkAKhWQ/BOOKS-READING?type=design&node-id=18743%3A4973&mode=design&t=Hi1KTaUJMogWXZzz-1) and [GoIT backend API](https://readjourney.b.goit.study/api-docs/).
+
+---
 
 ## ✨ Features
 
 **🔐 Authentication**
 
 <p>
-  <img src="public/images/preview/register-page-preview.webp" alt="Register Page" width="80%">
+  <img src="public/images/preview/register-page-preview.webp" alt="Register Page" width="60%">
 </p>
 
 - User registration and login.
@@ -31,10 +37,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Form validation with Formik and Yup.
 - Error handling and toast notifications.
 
+---
+
 **🏠 Recommended Page**
 
 <p>
-  <img src="public/images/preview/recommended-page-preview.webp" alt="Recommended Page" width="80%">
+  <img src="public/images/preview/recommended-page-preview.webp" alt="Recommended Page" width="60%">
 </p>
 
 - Display recommended books fetched from the backend.
@@ -47,10 +55,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Add books to the personal library directly from the modal.
 - Display book information, including title, author, description, and other available details.
 
+---
+
 **📚 My Library**
 
 <p>
-  <img src="public/images/preview/library-page-preview.webp" alt="My Library Page" width="80%">
+  <img src="public/images/preview/library-page-preview.webp" alt="My Library Page" width="60%">
 </p>
 
 - Add new books to the personal library.
@@ -66,10 +76,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Remove books from the personal library.
 - Display loading, error, and empty states.
 
+---
+
 **📖 Reading Page**
 
 <p>
-  <img src="public/images/preview/reading-page-preview.webp" alt="Reading Page" width="80%">
+  <img src="public/images/preview/reading-page-preview.webp" alt="Reading Page" width="60%">
 </p>
 
 - Display information about the currently selected book.
@@ -81,6 +93,8 @@ The project was developed as a personal portfolio project based on the provided 
 - Update reading progress and statistics after completing a session.
 - Display a completion modal when the entire book has been read.
 
+---
+
 **📊 Reading Progress**
 
 - Display the current reading progress.
@@ -88,10 +102,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Track the number of pages read.
 - Update progress dynamically after reading sessions.
 
+---
+
 **📅 Diary**
 
 <p>
-  <img src="public/images/preview/diary-preview.webp" alt="Reading Diary" width="50%">
+  <img src="public/images/preview/diary-preview.webp" alt="Reading Diary" width="30%">
 </p>
 
 - Display reading sessions organized by date.
@@ -102,10 +118,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Delete individual reading sessions.
 - Scroll through reading history.
 
+---
+
 **📈 Statistics**
 
 <p>
-  <img src="public/images/preview/statistics-preview.webp" alt="Reading Statistics" width="50%">
+  <img src="public/images/preview/statistics-preview.webp" alt="Reading Statistics" width="30%">
 </p>
 
 - Visualize reading progress using a chart.
@@ -113,10 +131,12 @@ The project was developed as a personal portfolio project based on the provided 
 - Help users track their progress and understand their reading habits.
 - Update statistics based on reading sessions.
 
+---
+
 **🪟 Modal Windows**
 
 <p>
-  <img src="public/images/preview/modal-preview.webp" alt="Modal Window" width="50%">
+  <img src="public/images/preview/modal-preview.webp" alt="Modal Window" width="30%">
 </p>
 
 - Reusable modal components for different application features.
@@ -127,6 +147,8 @@ The project was developed as a personal portfolio project based on the provided 
   - Clicking the close button.
   - Clicking the backdrop.
   - Pressing the Esc key.
+
+  ---
 
 **🎨 Interface**
 
@@ -140,6 +162,8 @@ The project was developed as a personal portfolio project based on the provided 
 - Toast notifications for success and error feedback.
 - SVG sprite for interface icons.
 - Responsive burger navigation on mobile and tablet devices.
+
+---
 
 ## 🔌 Backend Integration
 
@@ -163,6 +187,8 @@ The backend handles:
 
 Axios is used for HTTP requests, with request interceptors for attaching authentication tokens.
 
+---
+
 ## 🛠 Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=js,html,css,git,github,figma,ts,vercel,vscode,react,vite&theme=light)](https://skillicons.dev)
@@ -183,6 +209,8 @@ Axios is used for HTTP requests, with request interceptors for attaching authent
 | **SVG Sprite**       | Reusable interface icons                   |
 | **Git & GitHub**     | Version control and source code management |
 
+---
+
 ## 📱 Responsive Design
 
 The application is designed to provide a consistent experience across different screen sizes:
@@ -192,6 +220,8 @@ The application is designed to provide a consistent experience across different 
 - 💻 Desktop: from 1440px.
 
 The interface follows a mobile-first approach and adapts its layout, navigation, and content to different viewport sizes.
+
+---
 
 ## 🎯 Project Highlights
 
@@ -209,6 +239,8 @@ The interface follows a mobile-first approach and adapts its layout, navigation,
 - 📱 Responsive mobile-first interface.
 - 🧩 Reusable component-based architecture.
 - ⚡ Built with React, TypeScript, and Vite.
+
+---
 
 ## 🚀 Installation and Running
 
@@ -241,6 +273,8 @@ npm run dev
 ```bash
 http://localhost:5173
 ```
+
+---
 
 ## 👩‍💻 Author
 
