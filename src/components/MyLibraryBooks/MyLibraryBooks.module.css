@@ -234,6 +234,7 @@
   border: 1px solid rgba(232, 80, 80, 0.2);
   border-radius: 50%;
   background-color: rgba(232, 80, 80, 0.1);
+  color: #e85050;
 
   transition: background-color 250ms ease;
 }
@@ -251,7 +252,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  stroke: #e85050;
+  stroke: currentColor;
   fill: none;
 }
 

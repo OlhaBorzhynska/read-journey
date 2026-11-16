@@ -91,7 +91,7 @@ const ReadingPage = () => {
     return (
       <div className={css.notFoundContainer}>
         <div className={css.notFoundContent}>
-          <p className={css.errorCode}>404</p>
+          <p className={css.errorCode}>Error</p>
 
           <h2 className={css.notFoundTitle}>Failed to load book</h2>
 
