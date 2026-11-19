@@ -147,53 +147,55 @@ const MyLibraryBooks = ({ refreshKey }: MyLibraryBooksProps) => {
       <div className={css.titleWrapper}>
         <h1 className={css.title}>My library</h1>
 
-        <div className={css.filterWrapper} ref={filterRef}>
-          <button
-            type="button"
-            className={css.filterButton}
-            onClick={() => setIsFilterOpen((prev) => !prev)}
-            aria-label="Filter books by reading status"
-            aria-haspopup="listbox"
-            aria-expanded={isFilterOpen}
-            aria-controls="book-filter-options"
-          >
-            <span>{filterLabels[filter]}</span>
-
-            <svg
-              className={`${css.filterIcon} ${
-                isFilterOpen ? css.filterIconOpen : ""
-              }`}
-              aria-hidden="true"
+        {!isLoading && !error && books.length > 0 && (
+          <div className={css.filterWrapper} ref={filterRef}>
+            <button
+              type="button"
+              className={css.filterButton}
+              onClick={() => setIsFilterOpen((prev) => !prev)}
+              aria-label="Filter books by reading status"
+              aria-haspopup="listbox"
+              aria-expanded={isFilterOpen}
+              aria-controls="book-filter-options"
             >
-              <use href="/icons/sprite.svg#icon-chevron-down" />
-            </svg>
-          </button>
+              <span>{filterLabels[filter]}</span>
 
-          {isFilterOpen && (
-            <ul
-              className={css.filterOptions}
-              id="book-filter-options"
-              role="listbox"
-              aria-label="Reading status"
-            >
-              {(Object.keys(filterLabels) as BookFilter[]).map((option) => (
-                <li key={option}>
-                  <button
-                    type="button"
-                    className={`${css.filterOption} ${
-                      filter === option ? css.filterOptionActive : ""
-                    }`}
-                    onClick={() => handleFilterSelect(option)}
-                    role="option"
-                    aria-selected={filter === option}
-                  >
-                    {filterLabels[option]}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+              <svg
+                className={`${css.filterIcon} ${
+                  isFilterOpen ? css.filterIconOpen : ""
+                }`}
+                aria-hidden="true"
+              >
+                <use href="/icons/sprite.svg#icon-chevron-down" />
+              </svg>
+            </button>
+
+            {isFilterOpen && (
+              <ul
+                className={css.filterOptions}
+                id="book-filter-options"
+                role="listbox"
+                aria-label="Reading status"
+              >
+                {(Object.keys(filterLabels) as BookFilter[]).map((option) => (
+                  <li key={option}>
+                    <button
+                      type="button"
+                      className={`${css.filterOption} ${
+                        filter === option ? css.filterOptionActive : ""
+                      }`}
+                      onClick={() => handleFilterSelect(option)}
+                      role="option"
+                      aria-selected={filter === option}
+                    >
+                      {filterLabels[option]}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
       </div>
 
       {isLoading && (
