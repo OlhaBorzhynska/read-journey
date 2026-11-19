@@ -26,31 +26,33 @@ const RecommendedBooks = ({
       <div className={css.titlePaginationWrapper}>
         <h1 className={css.title}>Recommended</h1>
 
-        <div className={css.pagination}>
-          <button
-            type="button"
-            className={css.arrow}
-            disabled={page === 1}
-            onClick={() => onPageChange(page - 1)}
-            aria-label="Previous page"
-          >
-            <svg className={css.paginationIcon} aria-hidden="true">
-              <use href={`/icons/sprite.svg#icon-chevron-left`} />
-            </svg>
-          </button>
+        {!isLoading && books.length > 0 && (
+          <div className={css.pagination}>
+            <button
+              type="button"
+              className={css.arrow}
+              disabled={page <= 1}
+              onClick={() => onPageChange(page - 1)}
+              aria-label="Previous page"
+            >
+              <svg className={css.paginationIcon} aria-hidden="true">
+                <use href={`/icons/sprite.svg#icon-chevron-left`} />
+              </svg>
+            </button>
 
-          <button
-            type="button"
-            className={css.arrow}
-            disabled={page === totalPages}
-            onClick={() => onPageChange(page + 1)}
-            aria-label="Next page"
-          >
-            <svg className={css.paginationIcon} aria-hidden="true">
-              <use href={`/icons/sprite.svg#icon-chevron-right`} />
-            </svg>
-          </button>
-        </div>
+            <button
+              type="button"
+              className={css.arrow}
+              disabled={page >= totalPages}
+              onClick={() => onPageChange(page + 1)}
+              aria-label="Next page"
+            >
+              <svg className={css.paginationIcon} aria-hidden="true">
+                <use href={`/icons/sprite.svg#icon-chevron-right`} />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       {isLoading && (

@@ -11,6 +11,11 @@ export const registerSchema = Yup.object({
     .required("Email is required"),
 
   password: Yup.string()
+    .required("Password is required")
     .min(7, "Password must be at least 7 characters")
-    .required("Password is required"),
+    .test(
+      "not-only-spaces",
+      "Password cannot contain only spaces",
+      (value) => !!value && value.trim().length > 0,
+    ),
 });

@@ -138,8 +138,16 @@ const RecommendedPage = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setLimit(getBooksLimit());
-      setPage(1);
+      const newLimit = getBooksLimit();
+
+      setLimit((prevLimit) => {
+        if (prevLimit !== newLimit) {
+          setPage(1);
+          return newLimit;
+        }
+
+        return prevLimit;
+      });
     };
 
     window.addEventListener("resize", handleResize);
