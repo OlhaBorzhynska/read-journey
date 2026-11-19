@@ -26,12 +26,12 @@ const RecommendedBooks = ({
       <div className={css.titlePaginationWrapper}>
         <h1 className={css.title}>Recommended</h1>
 
-        {!isLoading && books.length > 0 && (
+        {books.length > 0 && (
           <div className={css.pagination}>
             <button
               type="button"
               className={css.arrow}
-              disabled={page <= 1}
+              disabled={isLoading || page <= 1}
               onClick={() => onPageChange(page - 1)}
               aria-label="Previous page"
             >
@@ -43,7 +43,7 @@ const RecommendedBooks = ({
             <button
               type="button"
               className={css.arrow}
-              disabled={page >= totalPages}
+              disabled={isLoading || page >= totalPages}
               onClick={() => onPageChange(page + 1)}
               aria-label="Next page"
             >
