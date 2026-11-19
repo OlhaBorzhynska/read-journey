@@ -63,7 +63,24 @@ const RecommendedBooks = ({
 
       {error && <p className="errorMessage">{error}</p>}
 
-      {!isLoading && !error && books.length === 0 && <p>No books found.</p>}
+      {!isLoading && !error && books.length === 0 && (
+        <div className={css.emptyState}>
+          <div className={css.emptyIconWrapper} aria-hidden="true">
+            <img
+              className={css.emptyIcon}
+              src="/images/books-icon.png"
+              alt="books icon"
+              aria-hidden="true"
+            />
+          </div>
+
+          <p className={css.emptyText}>
+            We couldn't find&nbsp;
+            <span className={css.emptyTextAccent}>any books</span>&nbsp;matching
+            your search. Try another title or author.
+          </p>
+        </div>
+      )}
 
       {!isLoading && !error && books.length > 0 && (
         <>
