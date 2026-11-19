@@ -55,7 +55,7 @@ const RecommendedBooks = ({
         )}
       </div>
 
-      {isLoading && (
+      {isLoading && books.length === 0 && (
         <div className={css.loadingContainer}>
           <Loader size="medium" />
         </div>
@@ -82,7 +82,7 @@ const RecommendedBooks = ({
         </div>
       )}
 
-      {!isLoading && !error && books.length > 0 && (
+      {!error && books.length > 0 && (
         <>
           <ul className={css.list}>
             {books.map((book) => (

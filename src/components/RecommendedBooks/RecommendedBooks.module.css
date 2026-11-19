@@ -20,6 +20,7 @@
 .titlePaginationWrapper {
   display: flex;
   justify-content: space-between;
+  min-height: 32px;
 }
 
 .title {
@@ -175,6 +176,10 @@
     width: 704px;
     padding: 40px 40px;
     gap: 20px;
+  }
+
+  .titlePaginationWrapper {
+    min-height: 40px;
   }
 
   .title {
