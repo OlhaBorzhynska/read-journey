@@ -12,10 +12,10 @@ export const registerSchema = Yup.object({
 
   password: Yup.string()
     .required("Password is required")
-    .min(7, "Password must be at least 7 characters")
     .test(
-      "not-only-spaces",
-      "Password cannot contain only spaces",
-      (value) => !!value && value.trim().length > 0,
-    ),
+      "min-length",
+      "Password must be at least 7 characters",
+      (value) => !!value && value.trim().length >= 7,
+    )
+    .matches(/^\S/, "Password cannot start with a space"),
 });
